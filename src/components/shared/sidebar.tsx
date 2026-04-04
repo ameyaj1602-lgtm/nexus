@@ -11,6 +11,13 @@ import {
   Settings,
   LogOut,
   GraduationCap,
+  Users,
+  Zap,
+  Play,
+  ArrowLeftRight,
+  FileText,
+  Award,
+  ClipboardList,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { logout, getUser } from '@/lib/auth';
@@ -20,6 +27,14 @@ const studentNav = [
   { label: 'Discover', href: '/discover', icon: Compass },
   { label: 'Explore', href: '/explore', icon: Map },
   { label: 'Navigate', href: '/navigate', icon: Navigation },
+  { label: 'Colleges', href: '/colleges', icon: GraduationCap },
+  { label: 'Exams', href: '/exams', icon: ClipboardList },
+  { label: 'Scholarships', href: '/scholarships', icon: Award },
+  { label: 'Mentors', href: '/mentors', icon: Users },
+  { label: 'Skills', href: '/skills', icon: Zap },
+  { label: 'Simulate', href: '/simulate', icon: Play },
+  { label: 'Compare', href: '/compare', icon: ArrowLeftRight },
+  { label: 'Resume', href: '/resume', icon: FileText },
   { label: 'Coach', href: '/coach', icon: Bot },
   { label: 'Settings', href: '/settings', icon: Settings },
 ];
@@ -27,6 +42,9 @@ const studentNav = [
 const parentNav = [
   { label: 'Dashboard', href: '/parent/dashboard', icon: LayoutDashboard },
   { label: 'Explore Careers', href: '/explore', icon: Compass },
+  { label: 'Colleges', href: '/colleges', icon: GraduationCap },
+  { label: 'Exams', href: '/exams', icon: ClipboardList },
+  { label: 'Scholarships', href: '/scholarships', icon: Award },
   { label: 'Settings', href: '/settings', icon: Settings },
 ];
 
