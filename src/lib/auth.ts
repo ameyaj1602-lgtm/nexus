@@ -1,4 +1,4 @@
-import { supabase } from './supabase';
+import { supabase, isSupabaseConfigured } from './supabase';
 
 export interface User {
   name: string;
@@ -8,8 +8,10 @@ export interface User {
 
 const AUTH_KEY = 'nexus_user';
 
-// Supabase auth methods
-export async function signUpWithEmail(email: string, password: string, name: string, role: 'student' | 'parent') {
+// Supabase auth methods — only called when Supabase is configured
+async function signUpWithEmail(email: string, password: string, name: string, role: 'student' | 'parent') {
+  if (!isSupabaseConfigured) return null;
+
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
@@ -20,28 +22,20 @@ export async function signUpWithEmail(email: string, password: string, name: str
 
   if (error) throw error;
 
-  // Also save locally for immediate access (Supabase email confirmation may be enabled)
   const user: User = { name, email, role };
   localStorage.setItem(AUTH_KEY, JSON.stringify(user));
-
   return data;
 }
 
-export async function loginWithEmail(email: string, password: string) {
+async function loginWithEmail(email: string, password: string) {
+  if (!isSupabaseConfigured) return null;
+
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
   });
 
-  if (error) {
-    // Fallback to localStorage if Supabase auth not fully set up
-    const stored = localStorage.getItem(AUTH_KEY);
-    if (stored) {
-      const user: User = JSON.parse(stored);
-      if (user.email === email) return user;
-    }
-    throw error;
-  }
+  if (error) return null;
 
   const user: User = {
     name: data.user?.user_metadata?.name || email.split('@')[0],
@@ -52,16 +46,15 @@ export async function loginWithEmail(email: string, password: string) {
   return user;
 }
 
-export async function logoutSupabase() {
+async function logoutSupabase() {
+  if (!isSupabaseConfigured) return;
   await supabase.auth.signOut();
-  localStorage.removeItem(AUTH_KEY);
 }
 
-// Quick local methods (kept for backward compat and instant UI)
+// Local auth methods — work without Supabase
 export function signup(user: User): void {
   if (typeof window === 'undefined') return;
   localStorage.setItem(AUTH_KEY, JSON.stringify(user));
-  // Fire and forget Supabase signup
   signUpWithEmail(user.email, 'nexus-temp-123', user.name, user.role).catch(() => {});
 }
 
@@ -71,6 +64,8 @@ export function login(email: string, _password: string): User | null {
   if (!stored) return null;
   const user: User = JSON.parse(stored);
   if (user.email === email) return user;
+  // Try Supabase in background
+  loginWithEmail(email, _password).catch(() => {});
   return null;
 }
 
