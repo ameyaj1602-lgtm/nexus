@@ -31,33 +31,33 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center px-4">
+    <div className="min-h-screen bg-background text-foreground flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Link href="/" className="text-3xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+          <Link href="/" className="text-2xl font-bold text-primary">
             Nexus
           </Link>
-          <p className="text-zinc-400 mt-2">Welcome back</p>
+          <p className="text-muted-foreground mt-2 text-sm">Welcome back</p>
         </div>
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="rounded-xl border border-border bg-card">
           <CardContent className="p-6">
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <Label htmlFor="email" className="text-zinc-300">Email</Label>
+                <Label htmlFor="email" className="text-foreground">Email</Label>
                 <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} required
-                  placeholder="you@example.com" className="mt-1 bg-zinc-800 border-zinc-700" />
+                  placeholder="you@example.com" className="mt-1 bg-muted border-border" />
               </div>
               <div>
-                <Label htmlFor="password" className="text-zinc-300">Password</Label>
+                <Label htmlFor="password" className="text-foreground">Password</Label>
                 <Input id="password" type="password" value={password} onChange={e => setPassword(e.target.value)} required
-                  placeholder="Your password" className="mt-1 bg-zinc-800 border-zinc-700" />
+                  placeholder="Your password" className="mt-1 bg-muted border-border" />
               </div>
-              {error && <p className="text-red-400 text-sm">{error}</p>}
-              <Button type="submit" className="w-full bg-indigo-600 hover:bg-indigo-500 py-5">Log In</Button>
+              {error && <p className="text-destructive text-sm">{error}</p>}
+              <Button type="submit" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-5">Log In</Button>
             </form>
-            <p className="text-center text-zinc-500 text-sm mt-4">
+            <p className="text-center text-muted-foreground text-sm mt-4">
               Don&apos;t have an account?{' '}
-              <Link href="/signup" className="text-indigo-400 hover:underline">Sign up</Link>
+              <Link href="/signup" className="text-primary hover:underline">Sign up</Link>
             </p>
           </CardContent>
         </Card>

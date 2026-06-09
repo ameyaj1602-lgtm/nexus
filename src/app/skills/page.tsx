@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo, useCallback, createElement } from 'react';
 import {
   skills21,
   skillCategories,
@@ -20,18 +20,30 @@ import {
   BarChart3,
   Lightbulb,
   RotateCcw,
+  Puzzle,
+  Handshake,
+  Sun,
+  Monitor,
 } from 'lucide-react';
 
 const STORAGE_KEY = 'nexus_skills_assessment';
 
+// Map category names to Lucide icons (replacing emojis from categoryMeta)
+const categoryIconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  Thinking: Puzzle,
+  People: Handshake,
+  Self: Sun,
+  Digital: Monitor,
+};
+
 function getAiResistanceMeta(level: Skill21['aiResistance']) {
   switch (level) {
     case 'High':
-      return { icon: ShieldCheck, color: 'text-emerald-400', bg: 'bg-emerald-400/10', label: 'AI-Resistant' };
+      return { icon: ShieldCheck, color: 'text-success', bg: 'bg-success/10', label: 'AI-Resistant' };
     case 'Medium':
-      return { icon: Shield, color: 'text-yellow-400', bg: 'bg-yellow-400/10', label: 'AI-Augmented' };
+      return { icon: Shield, color: 'text-coral', bg: 'bg-coral/10', label: 'AI-Augmented' };
     case 'Low':
-      return { icon: ShieldAlert, color: 'text-red-400', bg: 'bg-red-400/10', label: 'AI-Replaceable' };
+      return { icon: ShieldAlert, color: 'text-destructive', bg: 'bg-destructive/10', label: 'AI-Replaceable' };
   }
 }
 
@@ -73,7 +85,7 @@ function RadarChart({
         key={`grid-${level}`}
         points={points.join(' ')}
         fill="none"
-        stroke="rgba(255,255,255,0.08)"
+        stroke="hsl(var(--border))"
         strokeWidth="1"
       />
     );
@@ -90,7 +102,7 @@ function RadarChart({
         y1={cy}
         x2={p.x}
         y2={p.y}
-        stroke="rgba(255,255,255,0.06)"
+        stroke="hsl(var(--border))"
         strokeWidth="1"
       />
     );
@@ -113,7 +125,7 @@ function RadarChart({
         y={p.y}
         textAnchor="middle"
         dominantBaseline="middle"
-        className="fill-zinc-500 text-[9px]"
+        className="fill-muted-foreground text-[9px]"
       >
         {short}
       </text>
@@ -126,8 +138,8 @@ function RadarChart({
       {axes}
       <polygon
         points={dataPoints.join(' ')}
-        fill="rgba(99, 102, 241, 0.15)"
-        stroke="rgb(99, 102, 241)"
+        fill="hsl(var(--primary) / 0.15)"
+        stroke="hsl(var(--primary))"
         strokeWidth="2"
       />
       {data.map((v, i) => {
@@ -138,7 +150,7 @@ function RadarChart({
             cx={p.x}
             cy={p.y}
             r="3"
-            fill="rgb(99, 102, 241)"
+            fill="hsl(var(--primary))"
           />
         );
       })}
@@ -235,32 +247,32 @@ export default function SkillsPage() {
   }, [filteredSkills]);
 
   return (
-    <div className="flex min-h-screen bg-black text-white">
+    <div className="flex min-h-screen bg-background text-foreground">
       <Sidebar />
       <main className="flex-1 p-6 md:p-8 pb-24 md:pb-8 overflow-y-auto">
         <div className="max-w-5xl mx-auto space-y-8">
           {/* Header */}
           <div>
             <h1 className="text-2xl font-bold tracking-tight">21st Century Skills</h1>
-            <p className="text-sm text-zinc-500 mt-1 max-w-2xl">
+            <p className="text-sm text-muted-foreground mt-1 max-w-2xl leading-relaxed">
               These 15 skills will matter more than your degree by 2030. Based on the World Economic
               Forum&apos;s Future of Jobs Report. Assess yourself, find your gaps, and start building.
             </p>
           </div>
 
           {/* Progress bar */}
-          <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4">
+          <div className="rounded-xl border border-border bg-card p-5">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium">
                 Self-Assessment Progress
               </span>
-              <span className="text-xs text-zinc-500">
+              <span className="text-xs text-muted-foreground">
                 {assessedCount}/{totalSkills} skills rated
               </span>
             </div>
-            <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
+            <div className="h-2 bg-muted rounded-full overflow-hidden">
               <div
-                className="h-full bg-indigo-600 rounded-full transition-all duration-500"
+                className="h-full bg-primary rounded-full transition-all duration-500"
                 style={{ width: `${(assessedCount / totalSkills) * 100}%` }}
               />
             </div>
@@ -270,7 +282,7 @@ export default function SkillsPage() {
                   variant="outline"
                   size="sm"
                   onClick={() => setShowRadar(!showRadar)}
-                  className="text-xs border-zinc-700 text-zinc-300 hover:bg-zinc-800"
+                  className="text-xs"
                 >
                   <BarChart3 className="size-3 mr-1.5" />
                   {showRadar ? 'Hide' : 'Show'} Skills Radar
@@ -279,7 +291,7 @@ export default function SkillsPage() {
                   variant="ghost"
                   size="sm"
                   onClick={resetAssessments}
-                  className="text-xs text-zinc-500 hover:text-zinc-300"
+                  className="text-xs text-muted-foreground"
                 >
                   <RotateCcw className="size-3 mr-1.5" />
                   Reset
@@ -290,10 +302,10 @@ export default function SkillsPage() {
 
           {/* Radar chart */}
           {showRadar && allAssessed && (
-            <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-6">
+            <div className="rounded-xl border border-border bg-card p-6">
               <h2 className="text-sm font-semibold mb-4 text-center">Your Skills Radar</h2>
               <RadarChart data={radarData} labels={radarLabels} size={320} />
-              <p className="text-xs text-zinc-500 text-center mt-3">
+              <p className="text-xs text-muted-foreground text-center mt-3">
                 Higher values = stronger self-assessment. Aim for balance across all categories.
               </p>
             </div>
@@ -301,22 +313,24 @@ export default function SkillsPage() {
 
           {/* Skill gaps */}
           {allAssessed && skillGaps.length > 0 && (
-            <div className="bg-zinc-900 border border-amber-500/20 rounded-xl p-5">
+            <div className="rounded-xl border border-border bg-card p-5">
               <div className="flex items-center gap-2 mb-3">
-                <Target className="size-4 text-amber-400" />
-                <h2 className="text-sm font-semibold">Skill Gaps for Your Target Careers</h2>
+                <div className="size-9 rounded-lg bg-coral/10 flex items-center justify-center">
+                  <Target className="size-4 text-coral" />
+                </div>
+                <h2 className="text-lg font-semibold">Skill Gaps for Your Target Careers</h2>
               </div>
               <div className="space-y-3">
                 {skillGaps.map(({ skill, level, neededFor }) => (
                   <div key={skill.id} className="flex items-center gap-3">
                     <div className="flex-1 min-w-0">
                       <div className="text-sm font-medium">{skill.name}</div>
-                      <div className="text-xs text-zinc-500">
+                      <div className="text-xs text-muted-foreground">
                         Needed for: {neededFor.join(', ')}
                       </div>
                     </div>
                     <div className="flex items-center gap-1">
-                      <span className="text-xs text-zinc-500 w-16 text-right">
+                      <span className="text-xs text-muted-foreground w-16 text-right">
                         Level {level}/5
                       </span>
                       <div className="flex gap-0.5">
@@ -324,7 +338,7 @@ export default function SkillsPage() {
                           <div
                             key={l}
                             className={`w-3 h-3 rounded-sm ${
-                              l <= level ? 'bg-amber-400' : 'bg-zinc-700'
+                              l <= level ? 'bg-coral' : 'bg-muted'
                             }`}
                           />
                         ))}
@@ -342,25 +356,25 @@ export default function SkillsPage() {
               onClick={() => setActiveCategory(null)}
               className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
                 !activeCategory
-                  ? 'bg-indigo-600 text-white'
-                  : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700 hover:text-zinc-200'
+                  ? 'bg-primary text-primary-foreground'
+                  : 'bg-muted text-muted-foreground hover:text-foreground'
               }`}
             >
               All Skills
             </button>
             {skillCategories.map((cat) => {
-              const meta = categoryMeta[cat];
+              const CatIcon = categoryIconMap[cat];
               return (
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(activeCategory === cat ? null : cat)}
                   className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors flex items-center gap-1.5 ${
                     activeCategory === cat
-                      ? `${meta.bg} ${meta.color} border ${meta.border}`
-                      : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700 hover:text-zinc-200'
+                      ? 'bg-primary/10 text-primary border border-primary/30'
+                      : 'bg-muted text-muted-foreground hover:text-foreground'
                   }`}
                 >
-                  <span>{meta.icon}</span>
+                  {CatIcon && <CatIcon className="size-3" />}
                   {cat}
                 </button>
               );
@@ -371,14 +385,18 @@ export default function SkillsPage() {
           {(activeCategory ? [activeCategory] : skillCategories).map((category) => {
             const catSkills = groupedSkills[category];
             if (!catSkills || catSkills.length === 0) return null;
-            const meta = categoryMeta[category];
+            const CatIcon = categoryIconMap[category];
 
             return (
               <div key={category}>
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="text-lg">{meta.icon}</span>
-                  <h2 className={`text-sm font-semibold ${meta.color}`}>{category} Skills</h2>
-                  <Badge variant="secondary" className="text-[10px] bg-zinc-800 text-zinc-500">
+                  {CatIcon && (
+                    <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                      <CatIcon className="size-4 text-primary" />
+                    </div>
+                  )}
+                  <h2 className="text-lg font-semibold">{category} Skills</h2>
+                  <Badge variant="secondary" className="text-[10px]">
                     {catSkills.length}
                   </Badge>
                 </div>
@@ -393,8 +411,8 @@ export default function SkillsPage() {
                     return (
                       <div
                         key={skill.id}
-                        className={`bg-zinc-900/80 border rounded-xl transition-all ${
-                          isExpanded ? `${meta.border} border-opacity-50` : 'border-zinc-800'
+                        className={`rounded-xl border bg-card transition-colors ${
+                          isExpanded ? 'border-primary/30' : 'border-border hover:border-primary/30'
                         }`}
                       >
                         {/* Card header */}
@@ -407,7 +425,7 @@ export default function SkillsPage() {
                               <span className="font-medium text-sm">{skill.name}</span>
                               <Badge
                                 variant="secondary"
-                                className={`text-[10px] ${meta.bg} ${meta.color} border-0`}
+                                className="text-[10px] bg-primary/10 text-primary border-0"
                               >
                                 {category}
                               </Badge>
@@ -418,21 +436,21 @@ export default function SkillsPage() {
                                 {aiMeta.label}
                               </span>
                             </div>
-                            <p className="text-xs text-zinc-500 mt-1 line-clamp-2">
+                            <p className="text-xs text-muted-foreground mt-1 line-clamp-2 leading-relaxed">
                               {skill.description}
                             </p>
                           </div>
                           {isExpanded ? (
-                            <ChevronUp className="size-4 text-zinc-500 shrink-0 mt-1" />
+                            <ChevronUp className="size-4 text-muted-foreground shrink-0 mt-1" />
                           ) : (
-                            <ChevronDown className="size-4 text-zinc-500 shrink-0 mt-1" />
+                            <ChevronDown className="size-4 text-muted-foreground shrink-0 mt-1" />
                           )}
                         </button>
 
                         {/* Self-assessment slider */}
                         <div className="px-4 pb-3">
                           <div className="flex items-center gap-3">
-                            <span className="text-[10px] text-zinc-500 w-16 shrink-0">
+                            <span className="text-[10px] text-muted-foreground w-16 shrink-0">
                               Self-assess:
                             </span>
                             <div className="flex gap-1 flex-1">
@@ -445,10 +463,10 @@ export default function SkillsPage() {
                                   }}
                                   className={`flex-1 h-7 rounded text-[10px] font-medium transition-all ${
                                     currentLevel === level
-                                      ? 'bg-indigo-600 text-white'
+                                      ? 'bg-primary text-primary-foreground'
                                       : currentLevel && currentLevel >= level
-                                      ? 'bg-indigo-600/30 text-indigo-300'
-                                      : 'bg-zinc-800 text-zinc-500 hover:bg-zinc-700'
+                                      ? 'bg-primary/30 text-primary'
+                                      : 'bg-muted text-muted-foreground hover:text-foreground'
                                   }`}
                                   title={
                                     level === 1
@@ -466,7 +484,7 @@ export default function SkillsPage() {
                                 </button>
                               ))}
                             </div>
-                            <span className="text-[10px] text-zinc-600 w-16 text-right shrink-0">
+                            <span className="text-[10px] text-muted-foreground w-16 text-right shrink-0">
                               {currentLevel === 1
                                 ? 'Beginner'
                                 : currentLevel === 2
@@ -484,32 +502,32 @@ export default function SkillsPage() {
 
                         {/* Expanded content */}
                         {isExpanded && (
-                          <div className="px-4 pb-4 space-y-4 border-t border-zinc-800 pt-4">
+                          <div className="px-4 pb-4 space-y-4 border-t border-border pt-4">
                             {/* Why it matters */}
                             <div>
                               <div className="flex items-center gap-1.5 mb-1.5">
-                                <Lightbulb className="size-3.5 text-amber-400" />
-                                <h4 className="text-xs font-semibold text-amber-400">
+                                <Lightbulb className="size-3.5 text-coral" />
+                                <h4 className="text-xs font-semibold text-coral">
                                   Why It Matters
                                 </h4>
                               </div>
-                              <p className="text-xs text-zinc-400 leading-relaxed">
+                              <p className="text-xs text-muted-foreground leading-relaxed">
                                 {skill.whyItMatters}
                               </p>
                             </div>
 
                             {/* Activities */}
                             <div>
-                              <h4 className="text-xs font-semibold text-zinc-300 mb-2">
+                              <h4 className="text-xs font-semibold text-foreground mb-2">
                                 How to Build This Skill
                               </h4>
                               <ul className="space-y-1.5">
                                 {skill.activities.map((activity, i) => (
                                   <li
                                     key={i}
-                                    className="text-xs text-zinc-400 flex items-start gap-2"
+                                    className="text-xs text-muted-foreground flex items-start gap-2 leading-relaxed"
                                   >
-                                    <span className="text-indigo-400 mt-0.5 shrink-0">
+                                    <span className="text-primary mt-0.5 shrink-0">
                                       {i + 1}.
                                     </span>
                                     {activity}
@@ -520,7 +538,7 @@ export default function SkillsPage() {
 
                             {/* Careers */}
                             <div>
-                              <h4 className="text-xs font-semibold text-zinc-300 mb-2">
+                              <h4 className="text-xs font-semibold text-foreground mb-2">
                                 Critical For These Careers
                               </h4>
                               <div className="flex flex-wrap gap-1.5">
@@ -528,7 +546,7 @@ export default function SkillsPage() {
                                   <Badge
                                     key={career}
                                     variant="secondary"
-                                    className="text-[10px] bg-zinc-800 text-zinc-400"
+                                    className="text-[10px]"
                                   >
                                     {career}
                                   </Badge>

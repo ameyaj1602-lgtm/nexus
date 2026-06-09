@@ -22,7 +22,7 @@ export const simulations: CareerSimulation[] = [
   {
     id: 'ux-designer',
     career: 'UX Designer',
-    icon: '🎨',
+    icon: 'Palette',
     duration: '6 min',
     steps: [
       {
@@ -83,7 +83,7 @@ export const simulations: CareerSimulation[] = [
   {
     id: 'data-scientist',
     career: 'Data Scientist',
-    icon: '📊',
+    icon: 'BarChart3',
     duration: '6 min',
     steps: [
       {
@@ -144,7 +144,7 @@ export const simulations: CareerSimulation[] = [
   {
     id: 'doctor',
     career: 'Doctor (MBBS)',
-    icon: '⚕️',
+    icon: 'Stethoscope',
     duration: '7 min',
     steps: [
       {
@@ -205,7 +205,7 @@ export const simulations: CareerSimulation[] = [
   {
     id: 'lawyer',
     career: 'Lawyer',
-    icon: '⚖️',
+    icon: 'Scale',
     duration: '6 min',
     steps: [
       {
@@ -260,7 +260,7 @@ export const simulations: CareerSimulation[] = [
   {
     id: 'content-creator',
     career: 'Content Creator',
-    icon: '🎬',
+    icon: 'Clapperboard',
     duration: '6 min',
     steps: [
       {
@@ -321,7 +321,7 @@ export const simulations: CareerSimulation[] = [
   {
     id: 'entrepreneur',
     career: 'Entrepreneur',
-    icon: '💡',
+    icon: 'Lightbulb',
     duration: '7 min',
     steps: [
       {
@@ -382,7 +382,7 @@ export const simulations: CareerSimulation[] = [
   {
     id: 'architect',
     career: 'Architect',
-    icon: '🏗️',
+    icon: 'Building2',
     duration: '6 min',
     steps: [
       {
@@ -443,7 +443,7 @@ export const simulations: CareerSimulation[] = [
   {
     id: 'ai-engineer',
     career: 'AI/ML Engineer',
-    icon: '🤖',
+    icon: 'BrainCircuit',
     duration: '6 min',
     steps: [
       {
@@ -504,7 +504,7 @@ export const simulations: CareerSimulation[] = [
   {
     id: 'psychologist',
     career: 'Clinical Psychologist',
-    icon: '🧠',
+    icon: 'Brain',
     duration: '6 min',
     steps: [
       {
@@ -565,7 +565,7 @@ export const simulations: CareerSimulation[] = [
   {
     id: 'product-manager',
     career: 'Product Manager',
-    icon: '🚀',
+    icon: 'Rocket',
     duration: '6 min',
     steps: [
       {

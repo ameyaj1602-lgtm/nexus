@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, createElement } from 'react';
 import { careers, careerClusters } from '@/lib/careers-data';
 import { Career, IdentitySnapshot } from '@/types';
 import { Input } from '@/components/ui/input';
@@ -26,8 +26,106 @@ import {
   Clock,
   Brain,
   IndianRupee,
-  Sparkles,
+  Lightbulb,
+  Palette,
+  BarChart3,
+  Briefcase,
+  Leaf,
+  Video,
+  Gamepad2,
+  Landmark,
+  Building2,
+  Bot,
+  Stethoscope,
+  PenTool,
+  Scale,
+  Rocket,
+  Newspaper,
+  HandHeart,
+  Scissors,
+  Package,
+  Dumbbell,
+  Clapperboard,
+  Cpu,
+  Megaphone,
+  Trophy,
+  Dna,
+  ChefHat,
+  BookOpen,
+  BadgeDollarSign,
+  Sofa,
+  Cog,
+  Music,
+  Pill,
+  SearchCode,
+  Target,
+  Wand2,
+  HardHat,
+  ClipboardList,
+  Link,
+  TreePine,
+  Plane,
+  Laugh,
+  Sprout,
+  Medal,
+  Cloud,
+  Gavel,
+  LineChart,
+  Apple,
+  Globe,
 } from 'lucide-react';
+
+const iconMap: Record<string, React.ComponentType<any>> = {
+  Palette,
+  BarChart3,
+  Brain,
+  Briefcase,
+  Leaf,
+  Video,
+  TrendingUp,
+  Gamepad2,
+  Landmark,
+  Building2,
+  Bot,
+  Stethoscope,
+  PenTool,
+  Scale,
+  Rocket,
+  Newspaper,
+  ShieldCheck,
+  HandHeart,
+  Scissors,
+  Package,
+  Dumbbell,
+  Clapperboard,
+  Cpu,
+  Megaphone,
+  Trophy,
+  Dna,
+  ChefHat,
+  BookOpen,
+  BadgeDollarSign,
+  Sofa,
+  Cog,
+  Music,
+  Pill,
+  SearchCode,
+  Target,
+  Wand2,
+  HardHat,
+  ClipboardList,
+  Link,
+  TreePine,
+  Plane,
+  Laugh,
+  Sprout,
+  Medal,
+  Cloud,
+  Gavel,
+  LineChart,
+  Apple,
+  Globe,
+};
 
 type SortOption = 'best_match' | 'highest_growth' | 'lowest_ai_risk' | 'highest_salary';
 
@@ -39,21 +137,21 @@ function formatSalary(val: number): string {
 }
 
 function getGrowthIcon(trend: string) {
-  if (trend === 'rising') return <TrendingUp className="size-4 text-emerald-400" />;
-  if (trend === 'declining') return <TrendingDown className="size-4 text-red-400" />;
-  return <Minus className="size-4 text-yellow-400" />;
+  if (trend === 'rising') return <TrendingUp className="size-4 text-success" />;
+  if (trend === 'declining') return <TrendingDown className="size-4 text-destructive" />;
+  return <Minus className="size-4 text-muted-foreground" />;
 }
 
 function getAiRiskColor(score: number): string {
-  if (score < 30) return 'text-emerald-400';
-  if (score <= 50) return 'text-yellow-400';
-  return 'text-red-400';
+  if (score < 30) return 'text-success';
+  if (score <= 50) return 'text-coral';
+  return 'text-destructive';
 }
 
 function getAiRiskBg(score: number): string {
-  if (score < 30) return 'bg-emerald-400/10';
-  if (score <= 50) return 'bg-yellow-400/10';
-  return 'bg-red-400/10';
+  if (score < 30) return 'bg-success/10';
+  if (score <= 50) return 'bg-coral/10';
+  return 'bg-destructive/10';
 }
 
 function calculateMatch(career: Career, identity: IdentitySnapshot | null): number {
@@ -151,144 +249,153 @@ export default function ExplorePage() {
   ];
 
   return (
-    <div className="flex min-h-screen bg-black text-white">
+    <div className="flex min-h-screen bg-background text-foreground">
       <Sidebar />
       <main className="flex-1 p-6 md:p-8 pb-24 md:pb-8 overflow-y-auto">
-      <div className="max-w-6xl mx-auto space-y-6">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">Explore Careers</h1>
-          <p className="text-sm text-zinc-500">{filteredCareers.length} careers to discover</p>
-        </div>
-        {/* Search */}
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-zinc-500" />
-          <Input
-            placeholder="Search careers by name, field, or skill..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="pl-10 bg-zinc-900 border-zinc-800 text-zinc-100 placeholder:text-zinc-500 h-11"
-          />
-        </div>
+        <div className="max-w-5xl mx-auto space-y-6">
+          <div>
+            <h1 className="text-2xl font-bold tracking-tight">Explore Careers</h1>
+            <p className="text-sm text-muted-foreground">{filteredCareers.length} careers to discover</p>
+          </div>
 
-        {/* Cluster filter chips */}
-        <div className="flex flex-wrap gap-2">
-          <button
-            onClick={() => setActiveCluster(null)}
-            className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
-              !activeCluster
-                ? 'bg-indigo-600 text-white'
-                : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700 hover:text-zinc-200'
-            }`}
-          >
-            All
-          </button>
-          {careerClusters.map((cluster) => (
+          {/* Search */}
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+            <Input
+              placeholder="Search careers by name, field, or skill..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="pl-10 bg-card border-border text-foreground placeholder:text-muted-foreground h-11"
+            />
+          </div>
+
+          {/* Cluster filter chips */}
+          <div className="flex flex-wrap gap-2">
             <button
-              key={cluster}
-              onClick={() => setActiveCluster(activeCluster === cluster ? null : cluster)}
+              onClick={() => setActiveCluster(null)}
               className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
-                activeCluster === cluster
-                  ? 'bg-indigo-600 text-white'
-                  : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700 hover:text-zinc-200'
+                !activeCluster
+                  ? 'bg-primary text-primary-foreground'
+                  : 'bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground'
               }`}
             >
-              {cluster}
+              All
             </button>
-          ))}
-        </div>
+            {careerClusters.map((cluster) => (
+              <button
+                key={cluster}
+                onClick={() => setActiveCluster(activeCluster === cluster ? null : cluster)}
+                className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                  activeCluster === cluster
+                    ? 'bg-primary text-primary-foreground'
+                    : 'bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground'
+                }`}
+              >
+                {cluster}
+              </button>
+            ))}
+          </div>
 
-        {/* Sort options */}
-        <div className="flex items-center gap-2 flex-wrap">
-          <ArrowUpDown className="size-4 text-zinc-500" />
-          <span className="text-xs text-zinc-500 mr-1">Sort:</span>
-          {sortOptions.map((opt) => (
-            <button
-              key={opt.value}
-              onClick={() => setSortBy(opt.value)}
-              className={`px-3 py-1 rounded-md text-xs font-medium transition-colors ${
-                sortBy === opt.value
-                  ? 'bg-zinc-700 text-zinc-100'
-                  : 'text-zinc-500 hover:text-zinc-300'
-              }`}
-            >
-              {opt.label}
-            </button>
-          ))}
-        </div>
+          {/* Sort options */}
+          <div className="flex items-center gap-2 flex-wrap">
+            <ArrowUpDown className="size-4 text-muted-foreground" />
+            <span className="text-xs text-muted-foreground mr-1">Sort:</span>
+            {sortOptions.map((opt) => (
+              <button
+                key={opt.value}
+                onClick={() => setSortBy(opt.value)}
+                className={`px-3 py-1 rounded-md text-xs font-medium transition-colors ${
+                  sortBy === opt.value
+                    ? 'bg-muted text-foreground'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                {opt.label}
+              </button>
+            ))}
+          </div>
 
-        {/* Career cards grid */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredCareers.map((career) => (
-            <div
-              key={career.id}
-              className="group rounded-xl border border-zinc-800 bg-zinc-900/60 p-5 hover:border-zinc-700 hover:bg-zinc-900 transition-all"
-            >
-              <div className="flex items-start justify-between mb-3">
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl">{career.icon}</span>
-                  <div>
-                    <h3 className="font-semibold text-zinc-100 leading-tight">{career.name}</h3>
-                    <Badge variant="secondary" className="mt-1 text-[10px] px-2 py-0">
-                      {career.cluster}
-                    </Badge>
+          {/* Career cards grid */}
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {filteredCareers.map((career) => (
+              <div
+                key={career.id}
+                className="group rounded-xl border border-border bg-card p-5 hover:border-primary/30 transition-colors"
+              >
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex items-center gap-3">
+                    <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                      {iconMap[career.icon]
+                        ? createElement(iconMap[career.icon], { className: 'size-5 text-primary' })
+                        : null}
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-foreground leading-tight">{career.name}</h3>
+                      <Badge variant="secondary" className="mt-1 text-[10px] px-2 py-0">
+                        {career.cluster}
+                      </Badge>
+                    </div>
+                  </div>
+                  {sortBy === 'best_match' && identity && (
+                    <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+                      {calculateMatch(career, identity)}%
+                    </span>
+                  )}
+                </div>
+
+                <p className="text-sm text-muted-foreground line-clamp-2 mb-4 leading-relaxed">{career.description}</p>
+
+                <div className="flex items-center gap-3 text-xs mb-4">
+                  <div className="flex items-center gap-1 text-muted-foreground">
+                    <IndianRupee className="size-3" />
+                    <span>
+                      {formatSalary(career.salary_range.min)}-{formatSalary(career.salary_range.max)}
+                    </span>
+                  </div>
+                  <div className={`flex items-center gap-1 ${getAiRiskColor(career.ai_risk_score)}`}>
+                    <ShieldCheck className="size-3" />
+                    <span>{career.ai_risk_score}% AI Risk</span>
+                  </div>
+                  <div className="flex items-center gap-1 text-muted-foreground">
+                    {getGrowthIcon(career.growth_trend)}
+                    <span className="capitalize">{career.growth_trend}</span>
                   </div>
                 </div>
-                {sortBy === 'best_match' && identity && (
-                  <span className="text-xs font-medium text-indigo-400 bg-indigo-400/10 px-2 py-0.5 rounded-full">
-                    {calculateMatch(career, identity)}%
-                  </span>
-                )}
+
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="w-full"
+                  onClick={() => setSelectedCareer(career)}
+                >
+                  Explore
+                </Button>
               </div>
-
-              <p className="text-sm text-zinc-400 line-clamp-2 mb-4">{career.description}</p>
-
-              <div className="flex items-center gap-3 text-xs mb-4">
-                <div className="flex items-center gap-1 text-zinc-400">
-                  <IndianRupee className="size-3" />
-                  <span>
-                    {formatSalary(career.salary_range.min)}-{formatSalary(career.salary_range.max)}
-                  </span>
-                </div>
-                <div className={`flex items-center gap-1 ${getAiRiskColor(career.ai_risk_score)}`}>
-                  <ShieldCheck className="size-3" />
-                  <span>{career.ai_risk_score}% AI Risk</span>
-                </div>
-                <div className="flex items-center gap-1 text-zinc-400">
-                  {getGrowthIcon(career.growth_trend)}
-                  <span className="capitalize">{career.growth_trend}</span>
-                </div>
-              </div>
-
-              <Button
-                variant="outline"
-                size="sm"
-                className="w-full border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-zinc-100"
-                onClick={() => setSelectedCareer(career)}
-              >
-                Explore
-              </Button>
-            </div>
-          ))}
-        </div>
-
-        {filteredCareers.length === 0 && (
-          <div className="text-center py-16 text-zinc-500">
-            <Search className="size-8 mx-auto mb-3 opacity-50" />
-            <p className="font-medium">No careers found</p>
-            <p className="text-sm">Try adjusting your search or filters</p>
+            ))}
           </div>
-        )}
-      </div>
+
+          {filteredCareers.length === 0 && (
+            <div className="text-center py-16 text-muted-foreground">
+              <Search className="size-8 mx-auto mb-3 opacity-50" />
+              <p className="font-medium">No careers found</p>
+              <p className="text-sm">Try adjusting your search or filters</p>
+            </div>
+          )}
+        </div>
       </main>
 
       {/* Career Detail Dialog */}
       <Dialog open={!!selectedCareer} onOpenChange={(open) => !open && setSelectedCareer(null)}>
-        <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto bg-zinc-900 border-zinc-800 text-zinc-100">
+        <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto bg-card border-border text-foreground">
           {selectedCareer && (
             <>
               <DialogHeader>
                 <div className="flex items-center gap-3 mb-1">
-                  <span className="text-3xl">{selectedCareer.icon}</span>
+                  <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                    {iconMap[selectedCareer.icon]
+                      ? createElement(iconMap[selectedCareer.icon], { className: 'size-5 text-primary' })
+                      : null}
+                  </div>
                   <div>
                     <DialogTitle className="text-xl">{selectedCareer.name}</DialogTitle>
                     <DialogDescription className="mt-1">
@@ -301,38 +408,38 @@ export default function ExplorePage() {
               </DialogHeader>
 
               <div className="space-y-6 mt-4">
-                <p className="text-sm text-zinc-300 leading-relaxed">{selectedCareer.description}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">{selectedCareer.description}</p>
 
                 <div className="grid grid-cols-3 gap-3">
-                  <div className="rounded-lg bg-zinc-800/60 p-3 text-center">
-                    <IndianRupee className="size-4 mx-auto mb-1 text-emerald-400" />
-                    <p className="text-xs text-zinc-500">Salary Range</p>
-                    <p className="text-sm font-semibold text-zinc-200">
+                  <div className="rounded-xl border border-border bg-card p-3 text-center">
+                    <IndianRupee className="size-4 mx-auto mb-1 text-success" />
+                    <p className="text-xs text-muted-foreground">Salary Range</p>
+                    <p className="text-sm font-semibold text-foreground">
                       {formatSalary(selectedCareer.salary_range.min)} -{' '}
                       {formatSalary(selectedCareer.salary_range.max)}
                     </p>
                   </div>
-                  <div className={`rounded-lg p-3 text-center ${getAiRiskBg(selectedCareer.ai_risk_score)}`}>
+                  <div className={`rounded-xl border border-border p-3 text-center ${getAiRiskBg(selectedCareer.ai_risk_score)}`}>
                     <ShieldCheck className={`size-4 mx-auto mb-1 ${getAiRiskColor(selectedCareer.ai_risk_score)}`} />
-                    <p className="text-xs text-zinc-500">AI Risk</p>
+                    <p className="text-xs text-muted-foreground">AI Risk</p>
                     <p className={`text-sm font-semibold ${getAiRiskColor(selectedCareer.ai_risk_score)}`}>
                       {selectedCareer.ai_risk_score}%
                     </p>
                   </div>
-                  <div className="rounded-lg bg-zinc-800/60 p-3 text-center">
+                  <div className="rounded-xl border border-border bg-card p-3 text-center">
                     {getGrowthIcon(selectedCareer.growth_trend)}
-                    <p className="text-xs text-zinc-500 mt-1">Growth</p>
-                    <p className="text-sm font-semibold text-zinc-200 capitalize">{selectedCareer.growth_trend}</p>
+                    <p className="text-xs text-muted-foreground mt-1">Growth</p>
+                    <p className="text-sm font-semibold text-foreground capitalize">{selectedCareer.growth_trend}</p>
                   </div>
                 </div>
 
                 <div>
-                  <h4 className="text-sm font-semibold text-zinc-300 mb-2 flex items-center gap-2">
-                    <Brain className="size-4 text-indigo-400" /> Skills Needed
+                  <h4 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
+                    <Brain className="size-4 text-primary" /> Skills Needed
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {selectedCareer.skills.map((skill) => (
-                      <Badge key={skill} variant="outline" className="text-xs border-zinc-700 text-zinc-300">
+                      <Badge key={skill} variant="outline" className="text-xs">
                         {skill}
                       </Badge>
                     ))}
@@ -340,27 +447,27 @@ export default function ExplorePage() {
                 </div>
 
                 <div>
-                  <h4 className="text-sm font-semibold text-zinc-300 mb-2 flex items-center gap-2">
-                    <GraduationCap className="size-4 text-indigo-400" /> Education Path
+                  <h4 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
+                    <GraduationCap className="size-4 text-primary" /> Education Path
                   </h4>
-                  <p className="text-sm text-zinc-400">{selectedCareer.education_path}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{selectedCareer.education_path}</p>
                 </div>
 
                 <div>
-                  <h4 className="text-sm font-semibold text-zinc-300 mb-2 flex items-center gap-2">
-                    <Clock className="size-4 text-indigo-400" /> Day in the Life
+                  <h4 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
+                    <Clock className="size-4 text-primary" /> Day in the Life
                   </h4>
-                  <p className="text-sm text-zinc-400">{selectedCareer.day_in_life}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{selectedCareer.day_in_life}</p>
                 </div>
 
-                <div className="rounded-lg border border-indigo-500/30 bg-indigo-500/5 p-4">
-                  <h4 className="text-sm font-semibold text-indigo-300 mb-2 flex items-center gap-2">
-                    <Sparkles className="size-4" /> AI Future Lens
+                <div className="rounded-xl border border-primary/30 bg-primary/10 p-4">
+                  <h4 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
+                    <Lightbulb className="size-4 text-primary" /> Future Outlook
                   </h4>
-                  <p className="text-sm text-zinc-400">
-                    By 2030, AI will handle routine aspects of this role. The human skills that will
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    By 2030, automation will handle routine aspects of this role. The human skills that will
                     matter most are:{' '}
-                    <span className="text-indigo-300 font-medium">
+                    <span className="text-primary font-medium">
                       {selectedCareer.skills.slice(0, 3).join(', ')}
                     </span>
                     .
@@ -369,7 +476,7 @@ export default function ExplorePage() {
 
                 <div className="flex gap-3">
                   <Button
-                    className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white"
+                    className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90"
                     onClick={() => {
                       addToHypotheses(selectedCareer);
                       setSelectedCareer(null);

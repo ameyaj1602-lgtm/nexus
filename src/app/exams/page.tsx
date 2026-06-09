@@ -23,9 +23,9 @@ import {
 } from 'lucide-react';
 
 const difficultyColors: Record<string, string> = {
-  High: 'bg-red-500/20 text-red-400',
-  Medium: 'bg-yellow-500/20 text-yellow-400',
-  Low: 'bg-emerald-500/20 text-emerald-400',
+  High: 'bg-destructive/10 text-destructive',
+  Medium: 'bg-coral/10 text-coral',
+  Low: 'bg-success/10 text-success',
 };
 
 export default function ExamsPage() {
@@ -60,35 +60,34 @@ export default function ExamsPage() {
   }, [search, selectedStream, selectedDifficulty]);
 
   return (
-    <div className="flex min-h-screen bg-black text-white">
+    <div className="flex min-h-screen bg-background text-foreground">
       <Sidebar />
-      <main className="flex-1 p-4 md:p-8 pb-24 md:pb-8 overflow-y-auto">
-        <div className="max-w-6xl mx-auto space-y-6">
+      <main className="flex-1 p-6 md:p-8 pb-24 md:pb-8 overflow-y-auto max-w-5xl">
+        <div className="space-y-6">
           <div>
-            <h1 className="text-2xl font-bold tracking-tight flex items-center gap-2">
-              <FileText className="size-6 text-indigo-400" />
-              Exam Finder
+            <h1 className="text-2xl font-bold tracking-tight">
+              Exam Explorer
             </h1>
-            <p className="text-sm text-zinc-500 mt-1">
+            <p className="text-sm text-muted-foreground mt-1">
               {filtered.length} of {exams.length} entrance exams
             </p>
           </div>
 
           {/* Search */}
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-zinc-500" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
             <Input
               placeholder="Search exams by name, stream, or accepted colleges..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="pl-10 bg-zinc-900 border-zinc-800 text-zinc-100 placeholder:text-zinc-500 h-11"
+              className="pl-10 bg-card border-border text-foreground placeholder:text-muted-foreground h-11"
             />
           </div>
 
           {/* Filters */}
           <div className="space-y-3">
             <div>
-              <div className="text-xs text-zinc-500 mb-2 font-medium">Stream</div>
+              <div className="text-xs text-muted-foreground mb-2 font-medium">Stream</div>
               <div className="flex flex-wrap gap-2">
                 {['Engineering', 'Medical', 'Law', 'Design', 'Management', 'Science', 'Arts', 'Commerce'].map((stream) => (
                   <button
@@ -96,8 +95,8 @@ export default function ExamsPage() {
                     onClick={() => setSelectedStream(selectedStream === stream ? null : stream)}
                     className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
                       selectedStream === stream
-                        ? 'bg-indigo-600 text-white'
-                        : 'bg-zinc-900 text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200'
+                        ? 'bg-primary text-primary-foreground'
+                        : 'bg-muted text-muted-foreground hover:border-primary/30 hover:text-foreground'
                     }`}
                   >
                     {stream}
@@ -107,7 +106,7 @@ export default function ExamsPage() {
             </div>
 
             <div>
-              <div className="text-xs text-zinc-500 mb-2 font-medium">Difficulty</div>
+              <div className="text-xs text-muted-foreground mb-2 font-medium">Difficulty</div>
               <div className="flex gap-2">
                 {['High', 'Medium', 'Low'].map((d) => (
                   <button
@@ -115,8 +114,8 @@ export default function ExamsPage() {
                     onClick={() => setSelectedDifficulty(selectedDifficulty === d ? null : d)}
                     className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
                       selectedDifficulty === d
-                        ? 'bg-indigo-600 text-white'
-                        : 'bg-zinc-900 text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200'
+                        ? 'bg-primary text-primary-foreground'
+                        : 'bg-muted text-muted-foreground hover:border-primary/30 hover:text-foreground'
                     }`}
                   >
                     {d}
@@ -132,32 +131,32 @@ export default function ExamsPage() {
               <button
                 key={exam.id}
                 onClick={() => setSelectedExam(exam)}
-                className="text-left bg-zinc-900/50 border border-zinc-800/50 rounded-xl p-4 hover:border-indigo-500/30 hover:bg-zinc-900 transition-all group"
+                className="text-left rounded-xl border border-border bg-card p-5 hover:border-primary/30 transition-colors group"
               >
                 <div className="flex items-start justify-between mb-1">
-                  <h3 className="text-sm font-bold text-zinc-100 group-hover:text-indigo-400 transition-colors">
+                  <h3 className="text-sm font-bold text-foreground group-hover:text-primary transition-colors">
                     {exam.name}
                   </h3>
                   <span className={`px-2 py-0.5 rounded-full text-[10px] font-medium shrink-0 ${difficultyColors[exam.difficulty]}`}>
                     {exam.difficulty}
                   </span>
                 </div>
-                <p className="text-xs text-zinc-500 mb-3">{exam.fullName}</p>
+                <p className="text-xs text-muted-foreground mb-3">{exam.fullName}</p>
 
                 <div className="flex flex-wrap gap-1.5 mb-3">
                   {exam.streams.map((s) => (
-                    <span key={s} className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-zinc-800 text-zinc-400">
+                    <span key={s} className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-muted text-muted-foreground">
                       {s}
                     </span>
                   ))}
                 </div>
 
-                <div className="flex items-center justify-between text-xs text-zinc-500">
+                <div className="flex items-center justify-between text-xs text-muted-foreground">
                   <span className="flex items-center gap-1">
                     <Calendar className="size-3" />
                     {exam.examMonth}
                   </span>
-                  <span className="flex items-center gap-1 text-zinc-400 truncate max-w-[60%] text-right">
+                  <span className="flex items-center gap-1 text-muted-foreground truncate max-w-[60%] text-right">
                     <Users className="size-3 shrink-0" />
                     <span className="truncate">{exam.acceptedBy}</span>
                   </span>
@@ -167,9 +166,9 @@ export default function ExamsPage() {
           </div>
 
           {filtered.length === 0 && (
-            <div className="text-center py-16 text-zinc-600">
+            <div className="text-center py-16 text-muted-foreground">
               <FileText className="size-12 mx-auto mb-4 opacity-30" />
-              <p className="text-lg font-medium">No exams found</p>
+              <p className="text-lg font-semibold">No exams found</p>
               <p className="text-sm mt-1">Try adjusting your filters or search term</p>
             </div>
           )}
@@ -192,7 +191,7 @@ export default function ExamsPage() {
                   <span className={`px-2.5 py-1 rounded-full text-xs font-medium ${difficultyColors[selectedExam.difficulty]}`}>
                     {selectedExam.difficulty} Difficulty
                   </span>
-                  <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-zinc-800 text-zinc-300 flex items-center gap-1">
+                  <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-muted text-muted-foreground flex items-center gap-1">
                     <Calendar className="size-3" />
                     {selectedExam.examMonth}
                   </span>
@@ -200,7 +199,7 @@ export default function ExamsPage() {
 
                 {/* Streams */}
                 <div>
-                  <div className="text-xs text-zinc-500 font-medium mb-1.5">Streams</div>
+                  <div className="text-xs text-muted-foreground font-medium mb-1.5">Streams</div>
                   <div className="flex flex-wrap gap-1.5">
                     {selectedExam.streams.map((s) => (
                       <Badge key={s} variant="secondary" className="text-xs">{s}</Badge>
@@ -209,27 +208,27 @@ export default function ExamsPage() {
                 </div>
 
                 {/* Eligibility */}
-                <div className="bg-zinc-800/50 rounded-lg p-3">
-                  <div className="text-xs text-zinc-500 font-medium mb-1 flex items-center gap-1">
+                <div className="bg-muted rounded-lg p-3">
+                  <div className="text-xs text-muted-foreground font-medium mb-1 flex items-center gap-1">
                     <CheckCircle2 className="size-3" /> Eligibility
                   </div>
-                  <p className="text-xs text-zinc-300 leading-relaxed">{selectedExam.eligibility}</p>
+                  <p className="text-xs text-foreground leading-relaxed">{selectedExam.eligibility}</p>
                 </div>
 
                 {/* Accepted By */}
-                <div className="bg-zinc-800/50 rounded-lg p-3">
-                  <div className="text-xs text-zinc-500 font-medium mb-1 flex items-center gap-1">
+                <div className="bg-muted rounded-lg p-3">
+                  <div className="text-xs text-muted-foreground font-medium mb-1 flex items-center gap-1">
                     <Users className="size-3" /> Accepted By
                   </div>
-                  <p className="text-xs text-zinc-300 leading-relaxed">{selectedExam.acceptedBy}</p>
+                  <p className="text-xs text-foreground leading-relaxed">{selectedExam.acceptedBy}</p>
                 </div>
 
                 {/* Tips */}
-                <div className="bg-indigo-500/10 rounded-lg p-3 border border-indigo-500/20">
-                  <div className="text-xs text-indigo-400 font-medium mb-1 flex items-center gap-1">
+                <div className="bg-primary/10 rounded-lg p-3 border border-primary/30">
+                  <div className="text-xs text-primary font-medium mb-1 flex items-center gap-1">
                     <Lightbulb className="size-3" /> Preparation Tips
                   </div>
-                  <p className="text-xs text-zinc-300 leading-relaxed">{selectedExam.tips}</p>
+                  <p className="text-xs text-foreground leading-relaxed">{selectedExam.tips}</p>
                 </div>
 
                 {/* Registration Link */}
@@ -238,7 +237,7 @@ export default function ExamsPage() {
                     href={selectedExam.registrationUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm text-indigo-400 hover:text-indigo-300 transition-colors"
+                    className="flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors"
                   >
                     <ExternalLink className="size-4" />
                     Register / Official Website

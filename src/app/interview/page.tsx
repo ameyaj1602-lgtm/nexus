@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, createElement } from 'react';
 import { interviewSets, CareerInterviewSet } from '@/lib/interview-data';
 import Sidebar from '@/components/shared/sidebar';
 import { Button } from '@/components/ui/button';
@@ -15,7 +15,53 @@ import {
   CheckCircle2,
   Lightbulb,
   Send,
+  Palette,
+  BarChart3,
+  Stethoscope,
+  Target,
+  Cpu,
+  Scale,
+  Video,
+  Zap,
+  Building2,
+  Brain,
 } from 'lucide-react';
+
+const iconMap: Record<string, React.ComponentType<any>> = {
+  Palette,
+  BarChart3,
+  Stethoscope,
+  Target,
+  Cpu,
+  Scale,
+  Video,
+  Zap,
+  Building2,
+  Brain,
+};
+
+function CareerIcon({ name, className }: { name: string; className?: string }) {
+  const Icon = iconMap[name];
+  if (Icon) return createElement(Icon, { className: className || 'size-5 text-primary' });
+  return (
+    <span className={`size-9 rounded-lg bg-primary/10 flex items-center justify-center text-sm font-semibold text-primary ${className || ''}`}>
+      {name.charAt(0)}
+    </span>
+  );
+}
+
+function getCategoryStyle(cat: string) {
+  switch (cat) {
+    case 'technical':
+      return 'bg-primary/10 text-primary border-primary/30';
+    case 'behavioral':
+      return 'bg-cyan-accent/10 text-cyan-accent border-cyan-accent/30';
+    case 'situational':
+      return 'bg-coral/10 text-coral border-coral/30';
+    default:
+      return 'bg-success/10 text-success border-success/30';
+  }
+}
 
 export default function InterviewPage() {
   const [selected, setSelected] = useState<CareerInterviewSet | null>(null);
@@ -58,54 +104,44 @@ export default function InterviewPage() {
     setCurrentAnswer('');
   }
 
-  function getCategoryColor(cat: string) {
-    switch (cat) {
-      case 'technical': return 'bg-blue-600/10 text-blue-400 border-blue-600/20';
-      case 'behavioral': return 'bg-purple-600/10 text-purple-400 border-purple-600/20';
-      case 'situational': return 'bg-amber-600/10 text-amber-400 border-amber-600/20';
-      default: return 'bg-emerald-600/10 text-emerald-400 border-emerald-600/20';
-    }
-  }
-
   // Selection grid
   if (!selected) {
     return (
-      <div className="flex min-h-screen bg-background">
+      <div className="flex min-h-screen bg-background text-foreground">
         <Sidebar />
-        <main className="flex-1 px-4 py-8 md:px-8 pb-24 md:pb-8">
-          <div className="max-w-5xl mx-auto">
-            <div className="mb-8">
-              <h1 className="text-2xl md:text-3xl font-bold mb-2 flex items-center gap-2">
-                <MessageSquare className="size-6 text-indigo-400" />
-                Interview Prep
-              </h1>
-              <p className="text-muted-foreground">
-                Practice answering real interview questions for your target career. Get expert tips after each answer.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {interviewSets.map((set) => (
-                <button
-                  key={set.career}
-                  onClick={() => setSelected(set)}
-                  className="group text-left rounded-xl border border-border bg-card p-5 hover:border-indigo-500/50 hover:bg-indigo-600/5 transition-all"
-                >
-                  <div className="flex items-start justify-between mb-3">
-                    <span className="text-3xl">{set.icon}</span>
-                    <Badge variant="outline" className="text-[10px] capitalize">{set.type}</Badge>
+        <main className="flex-1 p-6 md:p-8 max-w-5xl">
+          <div className="mb-8">
+            <h1 className="text-2xl font-bold mb-2">Interview Prep</h1>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Practice answering real interview questions for your target career. Get expert tips after each answer.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {interviewSets.map((set) => (
+              <button
+                key={set.career}
+                onClick={() => setSelected(set)}
+                className="group text-left rounded-xl border border-border bg-card p-5 hover:border-primary/30 transition-colors"
+              >
+                <div className="flex items-start justify-between mb-3">
+                  <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <CareerIcon name={set.icon} className="size-5 text-primary" />
                   </div>
-                  <h3 className="font-semibold text-base mb-1 group-hover:text-indigo-400 transition-colors">
-                    {set.career}
-                  </h3>
-                  <p className="text-xs text-muted-foreground">
-                    {set.questions.length} practice questions
-                  </p>
-                  <div className="mt-3 flex items-center gap-1 text-xs text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <MessageSquare className="size-3" /> Start practice
-                  </div>
-                </button>
-              ))}
-            </div>
+                  <Badge variant="outline" className="text-[10px] capitalize">
+                    {set.type}
+                  </Badge>
+                </div>
+                <h3 className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">
+                  {set.career}
+                </h3>
+                <p className="text-xs text-muted-foreground">
+                  {set.questions.length} practice questions
+                </p>
+                <div className="mt-3 flex items-center gap-1 text-xs text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                  <MessageSquare className="size-3" /> Start practice
+                </div>
+              </button>
+            ))}
           </div>
         </main>
       </div>
@@ -114,16 +150,18 @@ export default function InterviewPage() {
 
   // Interview practice view
   return (
-    <div className="flex min-h-screen bg-background">
+    <div className="flex min-h-screen bg-background text-foreground">
       <Sidebar />
-      <main className="flex-1 px-4 py-8 md:px-8 pb-24 md:pb-8">
-        <div className="max-w-2xl mx-auto">
+      <main className="flex-1 p-6 md:p-8 max-w-5xl">
+        <div className="max-w-2xl">
           {/* Header */}
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
-              <span className="text-2xl">{selected.icon}</span>
+              <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                <CareerIcon name={selected.icon} className="size-5 text-primary" />
+              </div>
               <div>
-                <h1 className="text-lg font-bold">{selected.career} Interview</h1>
+                <h1 className="text-lg font-semibold">{selected.career} Interview</h1>
                 <p className="text-xs text-muted-foreground">
                   {answeredCount} of {totalQuestions} answered
                 </p>
@@ -149,9 +187,9 @@ export default function InterviewPage() {
                 }}
                 className={`size-2.5 rounded-full transition-all ${
                   i === questionIndex
-                    ? 'bg-indigo-500 scale-125'
+                    ? 'bg-primary scale-125'
                     : answers[i]
-                    ? 'bg-emerald-500'
+                    ? 'bg-success'
                     : 'bg-muted-foreground/20'
                 }`}
               />
@@ -164,20 +202,20 @@ export default function InterviewPage() {
               <div>
                 <div className="flex items-center gap-2 mb-3">
                   <span className="text-xs text-muted-foreground">Q{questionIndex + 1}</span>
-                  <Badge variant="outline" className={`text-[10px] capitalize ${getCategoryColor(currentQuestion.category)}`}>
+                  <Badge variant="outline" className={`text-[10px] capitalize ${getCategoryStyle(currentQuestion.category)}`}>
                     {currentQuestion.category}
                   </Badge>
                 </div>
-                <h2 className="text-lg font-semibold leading-relaxed">
+                <h2 className="text-lg font-semibold leading-relaxed text-foreground">
                   {currentQuestion.question}
                 </h2>
               </div>
 
               {/* Answer area */}
               {answers[questionIndex] ? (
-                <div className="rounded-xl border border-border bg-card/50 p-4">
+                <div className="rounded-xl border border-border bg-card p-5">
                   <p className="text-xs text-muted-foreground mb-1">Your answer:</p>
-                  <p className="text-sm leading-relaxed">{answers[questionIndex]}</p>
+                  <p className="text-sm leading-relaxed text-foreground">{answers[questionIndex]}</p>
                 </div>
               ) : (
                 <div className="space-y-3">
@@ -191,7 +229,7 @@ export default function InterviewPage() {
                   <Button
                     onClick={handleSubmitAnswer}
                     disabled={!currentAnswer.trim()}
-                    className="bg-indigo-600 hover:bg-indigo-700"
+                    className="bg-primary text-primary-foreground hover:bg-primary/90"
                   >
                     <Send className="size-4 mr-1" />
                     Submit Answer
@@ -201,8 +239,8 @@ export default function InterviewPage() {
 
               {/* Tip */}
               {showTip[questionIndex] && (
-                <div className="rounded-xl border border-amber-600/20 bg-amber-600/5 p-5">
-                  <h3 className="font-semibold text-sm mb-2 flex items-center gap-2 text-amber-400">
+                <div className="rounded-xl border border-border bg-card p-5">
+                  <h3 className="font-semibold text-sm mb-2 flex items-center gap-2 text-primary">
                     <Lightbulb className="size-4" />
                     Expert Tip
                   </h3>
@@ -218,7 +256,6 @@ export default function InterviewPage() {
                   variant="outline"
                   size="sm"
                   onClick={() => setShowTip((prev) => ({ ...prev, [questionIndex]: true }))}
-                  className="text-amber-400 border-amber-600/20 hover:bg-amber-600/5"
                 >
                   <Lightbulb className="size-4 mr-1" />
                   Show Tip
@@ -243,7 +280,7 @@ export default function InterviewPage() {
                     <ArrowRight className="size-4 ml-1" />
                   </Button>
                 ) : answeredCount === totalQuestions ? (
-                  <div className="flex items-center gap-2 text-emerald-400 text-sm">
+                  <div className="flex items-center gap-2 text-success text-sm">
                     <CheckCircle2 className="size-4" />
                     All done!
                   </div>

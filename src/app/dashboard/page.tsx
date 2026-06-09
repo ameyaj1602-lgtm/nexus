@@ -14,7 +14,6 @@ import {
   Map,
   MessageCircle,
   Plus,
-  Sparkles,
   ArrowRight,
   X,
   Lightbulb,
@@ -44,10 +43,10 @@ const weeklyPrompts = [
 ];
 
 const statusColors: Record<string, string> = {
-  exploring: 'bg-blue-600/20 text-blue-400',
-  tested: 'bg-yellow-600/20 text-yellow-400',
-  active: 'bg-emerald-600/20 text-emerald-400',
-  rejected: 'bg-red-600/20 text-red-400',
+  exploring: 'bg-primary/10 text-primary',
+  tested: 'bg-coral/10 text-coral',
+  active: 'bg-success/10 text-success',
+  rejected: 'bg-destructive/10 text-destructive',
 };
 
 export default function DashboardPage() {
@@ -142,30 +141,30 @@ export default function DashboardPage() {
   if (!user) return null;
 
   return (
-    <div className="p-6 md:p-8 max-w-6xl mx-auto">
+    <div className="p-6 md:p-8 max-w-5xl">
       {/* Welcome */}
       <div className="mb-8">
-        <h1 className="text-2xl font-bold">
+        <h1 className="text-2xl font-bold text-foreground">
           Welcome back, {user.name.split(' ')[0]}
         </h1>
-        <p className="text-muted-foreground mt-1">
-          Your career &amp; identity journey continues.
+        <p className="text-muted-foreground text-sm mt-1 leading-relaxed">
+          Your career and identity journey continues.
         </p>
       </div>
 
       {/* Top row: Identity + Journey */}
       <div className="grid lg:grid-cols-2 gap-6 mb-6">
         {/* Identity Snapshot Radar */}
-        <Card className="bg-card border-border">
-          <CardHeader className="pb-2">
+        <Card className="rounded-xl border border-border bg-card p-0 hover:border-primary/30 transition-colors">
+          <CardHeader className="pb-2 p-5">
             <div className="flex items-center justify-between">
-              <CardTitle className="text-base">Identity Snapshot</CardTitle>
-              <Badge className="bg-indigo-600/20 text-indigo-400 border-0 text-xs">
+              <CardTitle className="text-lg font-semibold text-foreground">Identity Snapshot</CardTitle>
+              <Badge className="bg-primary/10 text-primary border-0 text-xs">
                 Live
               </Badge>
             </div>
           </CardHeader>
-          <CardContent>
+          <CardContent className="px-5 pb-5">
             {identity ? (
               <ResponsiveContainer width="100%" height={260}>
                 <RadarChart data={radarData} cx="50%" cy="50%" outerRadius="75%">
@@ -181,8 +180,8 @@ export default function DashboardPage() {
                   />
                   <Radar
                     dataKey="value"
-                    stroke="#6366f1"
-                    fill="#6366f1"
+                    stroke="hsl(var(--chart-1))"
+                    fill="hsl(var(--chart-1))"
                     fillOpacity={0.2}
                     strokeWidth={2}
                   />
@@ -190,8 +189,10 @@ export default function DashboardPage() {
               </ResponsiveContainer>
             ) : (
               <div className="h-[260px] flex flex-col items-center justify-center text-muted-foreground gap-3">
-                <Brain className="size-10 opacity-40" />
-                <p className="text-sm">Complete onboarding to see your identity map</p>
+                <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <Brain className="size-5 text-primary" />
+                </div>
+                <p className="text-sm leading-relaxed">Complete onboarding to see your identity map</p>
                 <Link href="/onboarding">
                   <Button variant="outline" size="sm">
                     Start Onboarding
@@ -204,11 +205,11 @@ export default function DashboardPage() {
         </Card>
 
         {/* Journey Progress */}
-        <Card className="bg-card border-border">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-base">Your Journey</CardTitle>
+        <Card className="rounded-xl border border-border bg-card p-0 hover:border-primary/30 transition-colors">
+          <CardHeader className="pb-2 p-5">
+            <CardTitle className="text-lg font-semibold text-foreground">Your Journey</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="px-5 pb-5">
             <div className="space-y-5 mt-2">
               {[
                 {
@@ -216,39 +217,36 @@ export default function DashboardPage() {
                   label: 'Discover',
                   desc: 'Who am I?',
                   phase: 1,
-                  color: 'from-violet-500 to-purple-600',
                 },
                 {
                   icon: Compass,
                   label: 'Explore',
                   desc: "What's out there?",
                   phase: 2,
-                  color: 'from-blue-500 to-cyan-500',
                 },
                 {
                   icon: Map,
                   label: 'Navigate',
                   desc: "What's my path?",
                   phase: 3,
-                  color: 'from-emerald-500 to-teal-500',
                 },
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-4">
                   <div
-                    className={`size-10 rounded-xl bg-gradient-to-br ${item.color} flex items-center justify-center shrink-0 ${
+                    className={`size-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 ${
                       i > 0 ? 'opacity-40' : ''
                     }`}
                   >
-                    <item.icon className="size-5 text-white" />
+                    <item.icon className="size-5 text-primary" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-sm font-medium">{item.label}</div>
+                    <div className="text-sm font-medium text-foreground">{item.label}</div>
                     <div className="text-xs text-muted-foreground">
                       {item.desc}
                     </div>
                   </div>
                   {i === 0 && (
-                    <Badge className="bg-indigo-600/20 text-indigo-400 border-0 text-xs">
+                    <Badge className="bg-primary/10 text-primary border-0 text-xs">
                       Current
                     </Badge>
                   )}
@@ -258,7 +256,7 @@ export default function DashboardPage() {
 
             {/* 3-phase progress bar */}
             <div className="mt-6 flex gap-1">
-              <div className="h-1.5 flex-1 rounded-full bg-indigo-500" />
+              <div className="h-1.5 flex-1 rounded-full bg-primary" />
               <div className="h-1.5 flex-1 rounded-full bg-muted" />
               <div className="h-1.5 flex-1 rounded-full bg-muted" />
             </div>
@@ -272,10 +270,10 @@ export default function DashboardPage() {
       {/* Bottom row: Hypotheses + Prompt */}
       <div className="grid lg:grid-cols-2 gap-6 mb-6">
         {/* Career Hypothesis Board */}
-        <Card className="bg-card border-border">
-          <CardHeader className="pb-2">
+        <Card className="rounded-xl border border-border bg-card p-0 hover:border-primary/30 transition-colors">
+          <CardHeader className="pb-2 p-5">
             <div className="flex items-center justify-between">
-              <CardTitle className="text-base">Career Hypothesis Board</CardTitle>
+              <CardTitle className="text-lg font-semibold text-foreground">Career Hypothesis Board</CardTitle>
               <Button
                 size="sm"
                 variant="outline"
@@ -286,7 +284,7 @@ export default function DashboardPage() {
               </Button>
             </div>
           </CardHeader>
-          <CardContent>
+          <CardContent className="px-5 pb-5">
             {/* Add form */}
             {showAddForm && (
               <div className="mb-4 p-3 rounded-lg bg-muted/50 border border-border space-y-2">
@@ -307,7 +305,7 @@ export default function DashboardPage() {
                     size="sm"
                     onClick={addHypothesis}
                     disabled={!newCareer.trim()}
-                    className="bg-indigo-600 hover:bg-indigo-500 text-white"
+                    className="bg-primary text-primary-foreground hover:bg-primary/90"
                   >
                     Add Hypothesis
                   </Button>
@@ -330,7 +328,7 @@ export default function DashboardPage() {
                     className="flex items-center gap-3 p-3 rounded-lg bg-muted/30 border border-border group"
                   >
                     <div className="flex-1 min-w-0">
-                      <span className="text-sm font-medium">
+                      <span className="text-sm font-medium text-foreground">
                         {h.career_name}
                       </span>
                       {h.evidence && (
@@ -350,7 +348,7 @@ export default function DashboardPage() {
                     </button>
                     <button
                       onClick={() => removeHypothesis(h.id)}
-                      className="opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-red-400 transition-opacity"
+                      className="opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-destructive transition-opacity"
                     >
                       <X className="size-3.5" />
                     </button>
@@ -359,8 +357,10 @@ export default function DashboardPage() {
               </div>
             ) : (
               <div className="text-center py-8 text-muted-foreground">
-                <Compass className="size-8 mx-auto mb-2 opacity-40" />
-                <p className="text-sm">
+                <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-2">
+                  <Compass className="size-5 text-primary" />
+                </div>
+                <p className="text-sm leading-relaxed">
                   No hypotheses yet. Explore careers to start testing ideas.
                 </p>
                 <Link href="/explore" className="mt-3 inline-block">
@@ -375,22 +375,23 @@ export default function DashboardPage() {
         </Card>
 
         {/* Weekly Reflection Prompt */}
-        <Card className="bg-gradient-to-br from-indigo-950/50 to-card border-indigo-500/20">
-          <CardHeader className="pb-2">
+        <Card className="rounded-xl border border-border bg-card p-0 hover:border-primary/30 transition-colors">
+          <CardHeader className="pb-2 p-5">
             <div className="flex items-center gap-2">
-              <Sparkles className="size-5 text-indigo-400" />
-              <CardTitle className="text-base">Weekly Prompt</CardTitle>
+              <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                <Lightbulb className="size-5 text-primary" />
+              </div>
+              <CardTitle className="text-lg font-semibold text-foreground">Weekly Prompt</CardTitle>
             </div>
           </CardHeader>
-          <CardContent>
-            <div className="bg-indigo-950/30 border border-indigo-500/20 rounded-lg p-4 mb-6">
-              <Lightbulb className="size-5 text-indigo-400 mb-2" />
+          <CardContent className="px-5 pb-5">
+            <div className="bg-muted rounded-lg p-4 mb-6 border border-border">
               <p className="text-foreground text-lg leading-relaxed italic">
                 &ldquo;{prompt}&rdquo;
               </p>
             </div>
             <Link href="/discover">
-              <Button className="w-full bg-indigo-600/20 text-indigo-400 hover:bg-indigo-600/30 border border-indigo-500/20">
+              <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
                 Write in Journal
                 <ArrowRight className="size-4 ml-2" />
               </Button>
@@ -412,34 +413,28 @@ export default function DashboardPage() {
               href: '/discover',
               icon: Brain,
               label: 'Discovery Quiz',
-              color: 'from-violet-600 to-purple-600',
             },
             {
               href: '/explore',
               icon: Compass,
               label: 'Explore Careers',
-              color: 'from-blue-600 to-cyan-600',
             },
             {
               href: '/coach',
               icon: MessageCircle,
-              label: 'AI Coach',
-              color: 'from-emerald-600 to-teal-600',
+              label: 'Coach',
             },
             {
               href: '/navigate',
               icon: Map,
               label: 'My Roadmap',
-              color: 'from-orange-600 to-red-600',
             },
           ].map((item) => (
             <Link key={item.href} href={item.href}>
-              <Card className="bg-card border-border hover:border-muted-foreground transition-all cursor-pointer group">
+              <Card className="rounded-xl border border-border bg-card hover:border-primary/30 transition-colors cursor-pointer group">
                 <CardContent className="p-4 text-center">
-                  <div
-                    className={`size-10 mx-auto rounded-xl bg-gradient-to-br ${item.color} flex items-center justify-center mb-2 group-hover:scale-110 transition-transform`}
-                  >
-                    <item.icon className="size-5 text-white" />
+                  <div className="size-9 mx-auto rounded-lg bg-primary/10 flex items-center justify-center mb-2">
+                    <item.icon className="size-5 text-primary" />
                   </div>
                   <div className="text-xs text-muted-foreground">
                     {item.label}
@@ -452,32 +447,32 @@ export default function DashboardPage() {
       </div>
 
       {/* Parent Invite Code */}
-      <Card className="mt-6 bg-card border-border">
-        <CardContent className="p-4 flex items-center gap-4">
-          <div className="size-10 rounded-xl bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center shrink-0">
-            <Link2 className="size-5 text-white" />
+      <Card className="mt-6 rounded-xl border border-border bg-card hover:border-primary/30 transition-colors">
+        <CardContent className="p-5 flex items-center gap-4">
+          <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+            <Link2 className="size-5 text-primary" />
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium">Invite Code for Parents</p>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-sm font-medium text-foreground">Invite Code for Parents</p>
+            <p className="text-xs text-muted-foreground leading-relaxed">
               Share this code with your parent so they can connect to your journey
             </p>
           </div>
           <div className="flex items-center gap-2 shrink-0">
-            <code className="text-lg font-mono font-semibold tracking-widest text-indigo-400 bg-indigo-600/10 px-3 py-1.5 rounded-lg border border-indigo-500/20">
+            <code className="text-lg font-mono font-semibold tracking-widest text-primary bg-primary/10 px-3 py-1.5 rounded-lg border border-primary/30">
               {inviteCode}
             </code>
             <Button
               size="sm"
               variant="ghost"
-              className="text-muted-foreground hover:text-indigo-400"
+              className="text-muted-foreground hover:text-primary"
               onClick={() => {
                 navigator.clipboard.writeText(inviteCode);
                 setCodeCopied(true);
                 setTimeout(() => setCodeCopied(false), 2000);
               }}
             >
-              {codeCopied ? <Check className="size-4 text-emerald-400" /> : <Copy className="size-4" />}
+              {codeCopied ? <Check className="size-4 text-success" /> : <Copy className="size-4" />}
             </Button>
           </div>
         </CardContent>

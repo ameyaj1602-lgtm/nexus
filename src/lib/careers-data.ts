@@ -12,7 +12,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'Design degree, BFA, or self-taught with portfolio. Bootcamps available.',
     day_in_life: 'Talk to users, sketch wireframes, create prototypes in Figma, present designs to teams, iterate based on feedback.',
-    icon: '🎨',
+    icon: 'Palette',
     identity_match: { creative: 90, analytical: 50, social: 70, practical: 60, entrepreneurial: 40, caring: 80 }
   },
   {
@@ -26,7 +26,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'BTech/BSc in CS, Statistics, or Math. Masters preferred. Online courses available.',
     day_in_life: 'Clean and analyze datasets, build ML models, create dashboards, present findings to stakeholders.',
-    icon: '📊',
+    icon: 'BarChart3',
     identity_match: { creative: 40, analytical: 95, social: 30, practical: 70, entrepreneurial: 50, caring: 20 }
   },
   {
@@ -40,7 +40,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'BA/BSc Psychology → MA/MSc Clinical Psychology → MPhil (RCI license). 7-8 years.',
     day_in_life: 'Conduct therapy sessions, administer psychological tests, write case notes, attend supervision, read research.',
-    icon: '🧠',
+    icon: 'Brain',
     identity_match: { creative: 30, analytical: 60, social: 90, practical: 40, entrepreneurial: 30, caring: 95 }
   },
   {
@@ -54,7 +54,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'Any degree + tech understanding. MBA or engineering background common. Experience matters most.',
     day_in_life: 'Prioritize features, talk to customers, analyze metrics, write product specs, coordinate with engineering and design teams.',
-    icon: '🚀',
+    icon: 'Briefcase',
     identity_match: { creative: 60, analytical: 70, social: 80, practical: 50, entrepreneurial: 85, caring: 40 }
   },
   {
@@ -68,7 +68,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'BSc Environmental Science → MSc/MTech. PhD for research roles.',
     day_in_life: 'Collect field samples, analyze environmental data, write impact reports, advise on regulations, present to stakeholders.',
-    icon: '🌍',
+    icon: 'Leaf',
     identity_match: { creative: 30, analytical: 80, social: 40, practical: 70, entrepreneurial: 30, caring: 90 }
   },
   {
@@ -82,7 +82,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'No formal degree required. Mass Communication, Film, or self-taught. Portfolio is everything.',
     day_in_life: 'Script content, shoot videos, edit footage, engage with audience, analyze metrics, collaborate with brands.',
-    icon: '🎬',
+    icon: 'Video',
     identity_match: { creative: 95, analytical: 30, social: 85, practical: 40, entrepreneurial: 90, caring: 50 }
   },
   {
@@ -96,7 +96,7 @@ export const careers: Career[] = [
     growth_trend: 'stable',
     education_path: 'After Class 12: CA Foundation → Intermediate → Final (3-5 years). Articleship required.',
     day_in_life: 'Review financial statements, file tax returns, audit companies, advise clients, stay updated on regulations.',
-    icon: '📈',
+    icon: 'TrendingUp',
     identity_match: { creative: 10, analytical: 95, social: 40, practical: 80, entrepreneurial: 50, caring: 20 }
   },
   {
@@ -110,7 +110,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'BTech CS, BCA, or game design programs. Self-taught with portfolio works too.',
     day_in_life: 'Code game mechanics, design levels, fix bugs, playtest, collaborate with artists and sound designers.',
-    icon: '🎮',
+    icon: 'Gamepad2',
     identity_match: { creative: 90, analytical: 80, social: 30, practical: 60, entrepreneurial: 50, caring: 10 }
   },
   {
@@ -124,7 +124,7 @@ export const careers: Career[] = [
     growth_trend: 'stable',
     education_path: 'Any graduation → UPSC CSE (1-3 year prep typical). Success rate <1%.',
     day_in_life: 'Varies by posting: manage district administration, implement government schemes, handle crises, meet citizens.',
-    icon: '🏛️',
+    icon: 'Landmark',
     identity_match: { creative: 20, analytical: 60, social: 70, practical: 50, entrepreneurial: 30, caring: 80 }
   },
   {
@@ -138,7 +138,7 @@ export const careers: Career[] = [
     growth_trend: 'stable',
     education_path: 'BArch (5 years) after Class 12 with Math. NATA entrance exam.',
     day_in_life: 'Design buildings in CAD software, visit construction sites, meet clients, prepare blueprints, coordinate with engineers.',
-    icon: '🏗️',
+    icon: 'Building2',
     identity_match: { creative: 90, analytical: 70, social: 50, practical: 80, entrepreneurial: 40, caring: 30 }
   },
   {
@@ -152,7 +152,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'BTech/BSc CS or Math → specialize in ML. Masters/PhD valued. Online courses available.',
     day_in_life: 'Train ML models, process data, read research papers, experiment with architectures, deploy models to production.',
-    icon: '🤖',
+    icon: 'Bot',
     identity_match: { creative: 50, analytical: 95, social: 20, practical: 60, entrepreneurial: 60, caring: 10 }
   },
   {
@@ -166,7 +166,7 @@ export const careers: Career[] = [
     growth_trend: 'stable',
     education_path: 'Class 12 PCB → NEET → MBBS (5.5 years) → MD/MS specialization (3 years).',
     day_in_life: 'See patients in OPD, conduct rounds in wards, perform procedures, read reports, attend emergencies.',
-    icon: '⚕️',
+    icon: 'Stethoscope',
     identity_match: { creative: 20, analytical: 70, social: 60, practical: 80, entrepreneurial: 30, caring: 95 }
   },
   {
@@ -180,7 +180,7 @@ export const careers: Career[] = [
     growth_trend: 'stable',
     education_path: 'BDes, BFA, or self-taught. Portfolio matters more than degree.',
     day_in_life: 'Brief with clients, create concepts, design in Adobe/Figma, iterate on feedback, prepare files for print/digital.',
-    icon: '✏️',
+    icon: 'PenTool',
     identity_match: { creative: 95, analytical: 30, social: 50, practical: 60, entrepreneurial: 50, caring: 20 }
   },
   {
@@ -194,7 +194,7 @@ export const careers: Career[] = [
     growth_trend: 'stable',
     education_path: '5-year LLB after Class 12 (CLAT exam) or 3-year LLB after graduation.',
     day_in_life: 'Research case law, draft petitions, argue in court, meet clients, negotiate settlements.',
-    icon: '⚖️',
+    icon: 'Scale',
     identity_match: { creative: 30, analytical: 80, social: 80, practical: 50, entrepreneurial: 40, caring: 60 }
   },
   {
@@ -208,7 +208,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'Any degree or none. MBA helpful but not required. Real-world experience is key.',
     day_in_life: 'Set vision and strategy, talk to customers, recruit team, pitch to investors, solve problems, manage chaos.',
-    icon: '💡',
+    icon: 'Rocket',
     identity_match: { creative: 70, analytical: 50, social: 80, practical: 60, entrepreneurial: 99, caring: 40 }
   },
   {
@@ -222,7 +222,7 @@ export const careers: Career[] = [
     growth_trend: 'declining',
     education_path: 'BA Journalism/Mass Communication. English or regional language skills essential.',
     day_in_life: 'Chase leads, interview sources, write/edit stories, attend press briefings, manage social media presence.',
-    icon: '📰',
+    icon: 'Newspaper',
     identity_match: { creative: 70, analytical: 60, social: 90, practical: 40, entrepreneurial: 40, caring: 70 }
   },
   {
@@ -236,7 +236,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'BTech CS/IT → certifications (CEH, CISSP). Specialization through practice.',
     day_in_life: 'Monitor network traffic, investigate security incidents, conduct penetration tests, update security policies.',
-    icon: '🔒',
+    icon: 'ShieldCheck',
     identity_match: { creative: 40, analytical: 90, social: 20, practical: 80, entrepreneurial: 30, caring: 30 }
   },
   {
@@ -250,7 +250,7 @@ export const careers: Career[] = [
     growth_trend: 'stable',
     education_path: 'BSW or MSW (Social Work). Development studies or public policy degrees also work.',
     day_in_life: 'Visit communities, run programs, write reports, manage volunteers, raise funds, advocate for change.',
-    icon: '🤝',
+    icon: 'HandHeart',
     identity_match: { creative: 30, analytical: 40, social: 90, practical: 60, entrepreneurial: 40, caring: 99 }
   },
   {
@@ -264,7 +264,7 @@ export const careers: Career[] = [
     growth_trend: 'stable',
     education_path: 'BDes Fashion from NIFT/NID/Pearl. 4-year programs with portfolio admission.',
     day_in_life: 'Sketch designs, select fabrics, supervise production, attend fashion shows, meet buyers and brands.',
-    icon: '👗',
+    icon: 'Scissors',
     identity_match: { creative: 99, analytical: 20, social: 60, practical: 70, entrepreneurial: 70, caring: 20 }
   },
   {
@@ -278,7 +278,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'Engineering/Commerce + MBA (Operations). Supply chain certifications help.',
     day_in_life: 'Track shipments, negotiate with vendors, optimize warehouse operations, analyze demand forecasts.',
-    icon: '📦',
+    icon: 'Package',
     identity_match: { creative: 20, analytical: 80, social: 50, practical: 90, entrepreneurial: 40, caring: 10 }
   },
   {
@@ -292,7 +292,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'BPT (4.5 years) after Class 12 with PCB. MPT for specialization.',
     day_in_life: 'Assess patients, design exercise programs, perform manual therapy, track recovery progress.',
-    icon: '💪',
+    icon: 'Dumbbell',
     identity_match: { creative: 20, analytical: 50, social: 70, practical: 90, entrepreneurial: 40, caring: 90 }
   },
   {
@@ -306,7 +306,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'Film school (FTII, Whistling Woods) or assistant director route. No fixed path.',
     day_in_life: 'Develop scripts, plan shots, direct actors on set, oversee editing, collaborate with crew.',
-    icon: '🎥',
+    icon: 'Clapperboard',
     identity_match: { creative: 99, analytical: 30, social: 70, practical: 40, entrepreneurial: 60, caring: 30 }
   },
   {
@@ -320,7 +320,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'BTech Mechanical/Electronics/Robotics. MTech or MS for research roles.',
     day_in_life: 'Design robot mechanisms, program controllers, test prototypes, troubleshoot hardware, read research.',
-    icon: '🦾',
+    icon: 'Cpu',
     identity_match: { creative: 60, analytical: 90, social: 20, practical: 95, entrepreneurial: 50, caring: 10 }
   },
   {
@@ -334,7 +334,7 @@ export const careers: Career[] = [
     growth_trend: 'stable',
     education_path: 'Any degree + digital marketing certifications. MBA Marketing is a plus.',
     day_in_life: 'Plan campaigns, analyze ad performance, create content calendars, manage social channels, optimize conversion funnels.',
-    icon: '📱',
+    icon: 'Megaphone',
     identity_match: { creative: 70, analytical: 60, social: 70, practical: 50, entrepreneurial: 70, caring: 20 }
   },
   {
@@ -348,7 +348,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'BPEd, BSc Sports Science, or certified personal training (ACE, NSCA).',
     day_in_life: 'Design workout programs, train clients, track progress, learn new techniques, manage nutrition plans.',
-    icon: '🏋️',
+    icon: 'Trophy',
     identity_match: { creative: 20, analytical: 40, social: 80, practical: 90, entrepreneurial: 50, caring: 70 }
   },
   {
@@ -362,7 +362,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'BTech/BSc Biotechnology → MSc/MTech → PhD for research. GATE exam for higher studies.',
     day_in_life: 'Run experiments in the lab, analyze results, write research papers, attend conferences, collaborate with teams.',
-    icon: '🧬',
+    icon: 'Dna',
     identity_match: { creative: 40, analytical: 90, social: 30, practical: 70, entrepreneurial: 40, caring: 50 }
   },
   {
@@ -376,7 +376,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'Hotel Management (IHM) or culinary school. Apprenticeships under known chefs.',
     day_in_life: 'Plan menus, prep ingredients, cook during service, manage kitchen staff, experiment with new dishes.',
-    icon: '👨‍🍳',
+    icon: 'ChefHat',
     identity_match: { creative: 90, analytical: 30, social: 50, practical: 95, entrepreneurial: 60, caring: 40 }
   },
   {
@@ -390,7 +390,7 @@ export const careers: Career[] = [
     growth_trend: 'stable',
     education_path: 'Subject degree + BEd. NET/SET for college teaching. PhD for university positions.',
     day_in_life: 'Prepare lessons, teach classes, grade assignments, mentor students, attend parent meetings, update curriculum.',
-    icon: '📚',
+    icon: 'BookOpen',
     identity_match: { creative: 50, analytical: 50, social: 90, practical: 40, entrepreneurial: 20, caring: 95 }
   },
   {
@@ -404,7 +404,7 @@ export const careers: Career[] = [
     growth_trend: 'stable',
     education_path: 'Top engineering/commerce degree → MBA from IIM/ISB/global school. CFA is a plus.',
     day_in_life: 'Build financial models, create pitch decks, attend client meetings, work on deal execution, long hours.',
-    icon: '💰',
+    icon: 'BadgeDollarSign',
     identity_match: { creative: 20, analytical: 90, social: 60, practical: 50, entrepreneurial: 70, caring: 10 }
   },
   {
@@ -418,7 +418,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'BDes Interior Design (4 years) or diploma programs. Portfolio is essential.',
     day_in_life: 'Meet clients, create mood boards, draft floor plans, select materials, supervise installations.',
-    icon: '🏠',
+    icon: 'Sofa',
     identity_match: { creative: 90, analytical: 40, social: 60, practical: 80, entrepreneurial: 60, caring: 30 }
   },
   {
@@ -432,7 +432,7 @@ export const careers: Career[] = [
     growth_trend: 'stable',
     education_path: 'BTech Mechanical Engineering (4 years). JEE/state entrance exams.',
     day_in_life: 'Design parts in CAD, run simulations, visit manufacturing floors, review quality, solve technical problems.',
-    icon: '⚙️',
+    icon: 'Cog',
     identity_match: { creative: 40, analytical: 85, social: 20, practical: 95, entrepreneurial: 30, caring: 10 }
   },
   {
@@ -446,7 +446,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'Music academy, university music program, or self-taught. Talent + practice + networking.',
     day_in_life: 'Practice instrument, compose/produce tracks, perform at gigs, collaborate with artists, market music online.',
-    icon: '🎵',
+    icon: 'Music',
     identity_match: { creative: 99, analytical: 40, social: 60, practical: 30, entrepreneurial: 50, caring: 30 }
   },
   {
@@ -460,7 +460,7 @@ export const careers: Career[] = [
     growth_trend: 'stable',
     education_path: 'BPharm (4 years) or DPharm (2 years) after Class 12 with PCB/PCM.',
     day_in_life: 'Dispense prescriptions, counsel patients, manage inventory, check drug interactions, stay updated on new drugs.',
-    icon: '💊',
+    icon: 'Pill',
     identity_match: { creative: 10, analytical: 70, social: 50, practical: 80, entrepreneurial: 40, caring: 70 }
   },
   {
@@ -474,7 +474,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'BTech CS/IT + CEH, OSCP certifications. Bug bounty experience valued.',
     day_in_life: 'Scan networks for vulnerabilities, attempt controlled exploits, document findings, recommend fixes, write reports.',
-    icon: '🕵️',
+    icon: 'SearchCode',
     identity_match: { creative: 60, analytical: 90, social: 10, practical: 70, entrepreneurial: 40, caring: 20 }
   },
   {
@@ -488,7 +488,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'BA/BSc Psychology → MA I/O Psychology. MBA-Psychology combo is powerful.',
     day_in_life: 'Design hiring assessments, conduct employee surveys, coach leaders, analyze engagement data, run workshops.',
-    icon: '🎯',
+    icon: 'Target',
     identity_match: { creative: 40, analytical: 70, social: 80, practical: 50, entrepreneurial: 40, caring: 70 }
   },
   {
@@ -502,7 +502,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'BDes Animation, diploma programs (Arena, MAAC), or self-taught with strong reel.',
     day_in_life: 'Model 3D characters, animate scenes, add visual effects, render footage, collaborate with directors.',
-    icon: '🎭',
+    icon: 'Wand2',
     identity_match: { creative: 95, analytical: 50, social: 20, practical: 60, entrepreneurial: 30, caring: 10 }
   },
   {
@@ -516,7 +516,7 @@ export const careers: Career[] = [
     growth_trend: 'stable',
     education_path: 'BTech Civil Engineering (4 years). GATE for higher studies. Site experience essential.',
     day_in_life: 'Design structures, visit construction sites, review blueprints, manage contractors, ensure safety compliance.',
-    icon: '🌉',
+    icon: 'HardHat',
     identity_match: { creative: 30, analytical: 80, social: 30, practical: 95, entrepreneurial: 30, caring: 20 }
   },
   {
@@ -530,7 +530,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'Any degree + MPP/MPA from policy schools (NLSIU, IGIDR, Ashoka, Jindal). PhD for think tanks.',
     day_in_life: 'Analyze data on policy issues, write policy briefs, attend stakeholder meetings, present to policymakers.',
-    icon: '📋',
+    icon: 'ClipboardList',
     identity_match: { creative: 30, analytical: 80, social: 60, practical: 40, entrepreneurial: 30, caring: 80 }
   },
   {
@@ -544,7 +544,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'BTech CS + blockchain certifications. Self-taught with portfolio works. Hackathons help.',
     day_in_life: 'Write smart contracts, audit code for security, build DApps, research new protocols, participate in DAOs.',
-    icon: '⛓️',
+    icon: 'Link',
     identity_match: { creative: 40, analytical: 90, social: 20, practical: 60, entrepreneurial: 70, caring: 10 }
   },
   {
@@ -558,7 +558,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'BSc Zoology/Environmental Science → MSc Wildlife Biology. Indian Forest Service is another route.',
     day_in_life: 'Track wildlife populations, set camera traps, analyze data, write conservation plans, work with local communities.',
-    icon: '🐅',
+    icon: 'TreePine',
     identity_match: { creative: 20, analytical: 60, social: 40, practical: 80, entrepreneurial: 20, caring: 95 }
   },
   {
@@ -572,7 +572,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'Class 12 with PCM → CPL from flying school (DGCA approved). ~2-3 years training.',
     day_in_life: 'Pre-flight checks, fly aircraft, navigate weather, communicate with ATC, manage crew, simulator training.',
-    icon: '✈️',
+    icon: 'Plane',
     identity_match: { creative: 10, analytical: 70, social: 30, practical: 90, entrepreneurial: 20, caring: 30 }
   },
   {
@@ -586,7 +586,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'No formal degree. Open mics, comedy workshops, and stage time are the training.',
     day_in_life: 'Write jokes, perform at open mics and shows, watch other comedians, engage on social media, tour.',
-    icon: '😂',
+    icon: 'Laugh',
     identity_match: { creative: 90, analytical: 40, social: 95, practical: 20, entrepreneurial: 70, caring: 30 }
   },
   {
@@ -600,7 +600,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'BTech in Energy/Environmental/Chemical Engineering. Specialized masters programs emerging.',
     day_in_life: 'Design clean energy systems, run pilot projects, analyze environmental impact data, collaborate with policy teams.',
-    icon: '🌱',
+    icon: 'Sprout',
     identity_match: { creative: 50, analytical: 80, social: 30, practical: 80, entrepreneurial: 50, caring: 90 }
   },
   {
@@ -614,7 +614,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'MA/MSc Psychology → specialization in sports psychology. Certification through ISSP or similar.',
     day_in_life: 'Work with athletes on mental skills, conduct visualization sessions, help with performance anxiety, travel with teams.',
-    icon: '🏆',
+    icon: 'Medal',
     identity_match: { creative: 30, analytical: 60, social: 80, practical: 40, entrepreneurial: 30, caring: 85 }
   },
   {
@@ -628,7 +628,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'BTech CS/IT. Cloud certifications (AWS, GCP, Azure). 2-3 years experience as developer helps.',
     day_in_life: 'Manage deployments, set up CI/CD pipelines, monitor system health, troubleshoot outages, optimize infrastructure.',
-    icon: '☁️',
+    icon: 'Cloud',
     identity_match: { creative: 20, analytical: 85, social: 20, practical: 90, entrepreneurial: 30, caring: 10 }
   },
   {
@@ -642,7 +642,7 @@ export const careers: Career[] = [
     growth_trend: 'stable',
     education_path: '5-year LLB (CLAT) → specialize through NGOs, legal aid, or human rights organizations.',
     day_in_life: 'File PILs, represent marginalized communities, research case law, engage with media, attend court.',
-    icon: '✊',
+    icon: 'Gavel',
     identity_match: { creative: 30, analytical: 70, social: 80, practical: 40, entrepreneurial: 30, caring: 99 }
   },
   {
@@ -656,7 +656,7 @@ export const careers: Career[] = [
     growth_trend: 'stable',
     education_path: 'Any degree with quantitative skills. BTech, BSc Stats, BBA + analytics certifications.',
     day_in_life: 'Query databases, clean data, build dashboards, present insights to stakeholders, identify trends.',
-    icon: '📉',
+    icon: 'LineChart',
     identity_match: { creative: 20, analytical: 90, social: 40, practical: 60, entrepreneurial: 30, caring: 10 }
   },
   {
@@ -670,7 +670,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'BSc Nutrition/Dietetics → MSc. Registration with IDA. Clinical internship required.',
     day_in_life: 'Assess client health, create meal plans, counsel on lifestyle changes, track progress, stay updated on research.',
-    icon: '🥗',
+    icon: 'Apple',
     identity_match: { creative: 30, analytical: 50, social: 70, practical: 60, entrepreneurial: 40, caring: 85 }
   },
   {
@@ -684,7 +684,7 @@ export const careers: Career[] = [
     growth_trend: 'stable',
     education_path: 'BA in foreign language (JNU, BHU, DU). Certifications in specific languages. Immersion helps.',
     day_in_life: 'Translate documents, interpret at meetings, teach language classes, localize content, assist in diplomatic settings.',
-    icon: '🌐',
+    icon: 'Globe',
     identity_match: { creative: 40, analytical: 50, social: 80, practical: 40, entrepreneurial: 30, caring: 40 }
   },
   {
@@ -698,7 +698,7 @@ export const careers: Career[] = [
     growth_trend: 'rising',
     education_path: 'BTech/MSc in Aerospace/Physics/Electronics → ISRO entrance exam. PhD for research scientists.',
     day_in_life: 'Design spacecraft systems, run simulations, analyze mission data, collaborate on research, test equipment.',
-    icon: '🚀',
+    icon: 'Rocket',
     identity_match: { creative: 40, analytical: 95, social: 20, practical: 70, entrepreneurial: 30, caring: 20 }
   }
 ];

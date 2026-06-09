@@ -34,7 +34,6 @@ import {
   Scale,
   GraduationCap,
   CheckCircle2,
-  Sparkles,
 } from 'lucide-react';
 
 const ages = Array.from({ length: 7 }, (_, i) => String(12 + i));
@@ -167,12 +166,12 @@ export default function OnboardingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-background text-foreground flex flex-col">
       {/* Header with progress */}
       <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-30">
         <div className="mx-auto max-w-2xl px-4 py-4">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-lg font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+            <span className="text-lg font-bold text-foreground">
               Nexus
             </span>
             <span className="text-sm text-muted-foreground">
@@ -184,7 +183,7 @@ export default function OnboardingPage() {
               <div
                 key={s}
                 className={`h-1.5 flex-1 rounded-full transition-colors duration-300 ${
-                  s <= step ? 'bg-indigo-500' : 'bg-muted'
+                  s <= step ? 'bg-primary' : 'bg-muted'
                 }`}
               />
             ))}
@@ -193,13 +192,13 @@ export default function OnboardingPage() {
       </header>
 
       <main className="flex-1 mx-auto max-w-2xl w-full px-4 py-8">
-        {/* ──── Step 1: Basic Info ──── */}
+        {/* Step 1: Basic Info */}
         {step === 1 && (
           <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
             <div>
-              <h2 className="text-2xl font-bold">Tell us about yourself</h2>
-              <p className="text-muted-foreground mt-1">
-                This helps us personalize your career discovery journey.
+              <h1 className="text-2xl font-bold">Tell us about yourself</h1>
+              <p className="text-muted-foreground mt-1 text-sm leading-relaxed">
+                This helps us personalize your experience.
               </p>
             </div>
 
@@ -300,7 +299,7 @@ export default function OnboardingPage() {
               <Button
                 onClick={() => setStep(2)}
                 disabled={!canProceedStep1()}
-                className="w-full bg-indigo-600 hover:bg-indigo-500 text-white h-11"
+                className="w-full bg-primary text-primary-foreground hover:bg-primary/90 h-11"
               >
                 Continue
                 <ChevronRight className="size-4 ml-1" />
@@ -309,12 +308,12 @@ export default function OnboardingPage() {
           </div>
         )}
 
-        {/* ──── Step 2: Your World ──── */}
+        {/* Step 2: Your World */}
         {step === 2 && (
           <div className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-300">
             <div>
-              <h2 className="text-2xl font-bold">Your World</h2>
-              <p className="text-muted-foreground mt-1">
+              <h1 className="text-2xl font-bold">Your World</h1>
+              <p className="text-muted-foreground mt-1 text-sm leading-relaxed">
                 Help us understand what matters to you and your family.
               </p>
             </div>
@@ -332,10 +331,10 @@ export default function OnboardingPage() {
                   <button
                     key={chip}
                     onClick={() => toggleParentChip(chip)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium border transition-all ${
+                    className={`px-4 py-2 rounded-full text-sm font-medium border transition-colors ${
                       parentExpectations.includes(chip)
-                        ? 'bg-indigo-600/20 border-indigo-500 text-indigo-300'
-                        : 'border-border text-muted-foreground hover:border-muted-foreground hover:text-foreground'
+                        ? 'bg-primary/10 border-primary/30 text-primary'
+                        : 'border-border text-muted-foreground hover:border-primary/30 hover:text-foreground'
                     }`}
                   >
                     {chip}
@@ -344,7 +343,7 @@ export default function OnboardingPage() {
               </div>
             </div>
 
-            {/* What excites you - visual cards with icons */}
+            {/* What excites you */}
             <div className="space-y-3">
               <Label className="text-base">What excites you?</Label>
               <p className="text-sm text-muted-foreground">
@@ -358,26 +357,26 @@ export default function OnboardingPage() {
                     <button
                       key={item.id}
                       onClick={() => toggleInterest(item.id)}
-                      className={`relative flex flex-col items-center gap-2 rounded-xl border p-4 transition-all ${
+                      className={`relative flex flex-col items-center gap-2 rounded-xl border p-4 transition-colors ${
                         selected
-                          ? 'bg-indigo-600/10 border-indigo-500 ring-1 ring-indigo-500/30'
-                          : 'bg-card border-border hover:border-muted-foreground'
+                          ? 'bg-primary/10 border-primary/30'
+                          : 'bg-card border-border hover:border-primary/30'
                       }`}
                     >
                       {selected && (
-                        <CheckCircle2 className="absolute top-2 right-2 size-4 text-indigo-400" />
+                        <CheckCircle2 className="absolute top-2 right-2 size-4 text-primary" />
                       )}
                       <Icon
-                        className={`size-6 ${
+                        className={`size-5 ${
                           selected
-                            ? 'text-indigo-400'
+                            ? 'text-primary'
                             : 'text-muted-foreground'
                         }`}
                       />
                       <span
                         className={`text-xs font-medium text-center leading-tight ${
                           selected
-                            ? 'text-indigo-300'
+                            ? 'text-primary'
                             : 'text-muted-foreground'
                         }`}
                       >
@@ -393,7 +392,7 @@ export default function OnboardingPage() {
               <Button
                 variant="outline"
                 onClick={() => setStep(1)}
-                className="h-11 border-border"
+                className="h-11"
               >
                 <ChevronLeft className="size-4 mr-1" />
                 Back
@@ -401,7 +400,7 @@ export default function OnboardingPage() {
               <Button
                 onClick={() => setStep(3)}
                 disabled={!canProceedStep2()}
-                className="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white h-11"
+                className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90 h-11"
               >
                 Continue
                 <ChevronRight className="size-4 ml-1" />
@@ -410,12 +409,12 @@ export default function OnboardingPage() {
           </div>
         )}
 
-        {/* ──── Step 3: First Impression (sliders) ──── */}
+        {/* Step 3: Identity Check */}
         {step === 3 && (
           <div className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-300">
             <div>
-              <h2 className="text-2xl font-bold">Quick Identity Check</h2>
-              <p className="text-muted-foreground mt-1">
+              <h1 className="text-2xl font-bold">Quick Identity Check</h1>
+              <p className="text-muted-foreground mt-1 text-sm leading-relaxed">
                 Rate how much each statement feels like you. 1 = not me, 5 =
                 totally me.
               </p>
@@ -423,13 +422,13 @@ export default function OnboardingPage() {
 
             <div className="space-y-5">
               {identityQuestions.map((q) => (
-                <Card key={q.key} className="bg-card border-border">
-                  <CardContent className="py-4">
+                <Card key={q.key} className="rounded-xl border border-border bg-card p-5">
+                  <CardContent className="p-0">
                     <div className="flex items-center justify-between mb-3">
-                      <p className="text-sm font-medium pr-4">{q.question}</p>
+                      <p className="text-sm font-medium text-foreground pr-4">{q.question}</p>
                       <Badge
                         variant="outline"
-                        className="shrink-0 text-indigo-400 border-indigo-500/30"
+                        className="shrink-0 text-primary border-primary/30"
                       >
                         {scores[q.key]}/5
                       </Badge>
@@ -446,7 +445,7 @@ export default function OnboardingPage() {
                           [q.key]: Number(e.target.value),
                         }))
                       }
-                      className="w-full accent-indigo-500 cursor-pointer h-2"
+                      className="w-full accent-primary cursor-pointer h-2"
                     />
                     <div className="flex justify-between mt-1">
                       {scaleLabels.map((label, i) => (
@@ -454,7 +453,7 @@ export default function OnboardingPage() {
                           key={i}
                           className={`text-[10px] w-12 text-center ${
                             scores[q.key] === i + 1
-                              ? 'text-indigo-400 font-medium'
+                              ? 'text-primary font-medium'
                               : 'text-muted-foreground'
                           }`}
                         >
@@ -471,17 +470,16 @@ export default function OnboardingPage() {
               <Button
                 variant="outline"
                 onClick={() => setStep(2)}
-                className="h-11 border-border"
+                className="h-11"
               >
                 <ChevronLeft className="size-4 mr-1" />
                 Back
               </Button>
               <Button
                 onClick={handleFinish}
-                className="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white h-11"
+                className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90 h-11"
               >
-                <Sparkles className="size-4 mr-1" />
-                Launch My Journey
+                Get Started
               </Button>
             </div>
           </div>

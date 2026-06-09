@@ -61,41 +61,41 @@ export default function ParentLinkPage() {
   };
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center px-4">
+    <div className="min-h-screen bg-background flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link
             href="/"
-            className="text-3xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent"
+            className="text-2xl font-bold text-foreground"
           >
             Nexus
           </Link>
-          <p className="text-zinc-400 mt-2">Connect with your child&apos;s journey</p>
+          <p className="text-muted-foreground text-sm mt-2">Connect with your child&apos;s journey</p>
         </div>
 
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="rounded-xl border border-border bg-card">
           <CardContent className="p-6">
             {success ? (
               <div className="text-center py-8 space-y-4">
-                <CheckCircle2 className="w-16 h-16 text-emerald-400 mx-auto" />
-                <h2 className="text-xl font-semibold text-zinc-100">
+                <CheckCircle2 className="size-16 text-success mx-auto" />
+                <h2 className="text-lg font-semibold text-foreground">
                   You&apos;re now connected to your child&apos;s journey!
                 </h2>
-                <p className="text-sm text-zinc-400">
+                <p className="text-sm text-muted-foreground">
                   Redirecting to your dashboard...
                 </p>
               </div>
             ) : (
               <>
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="p-2.5 rounded-lg bg-indigo-500/10">
-                    <Link2 className="w-5 h-5 text-indigo-400" />
+                  <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <Link2 className="size-5 text-primary" />
                   </div>
                   <div>
-                    <h2 className="text-lg font-semibold text-zinc-100">
+                    <h2 className="text-lg font-semibold text-foreground">
                       Link to Your Child
                     </h2>
-                    <p className="text-sm text-zinc-500">
+                    <p className="text-sm text-muted-foreground">
                       Enter the invite code from your child&apos;s dashboard
                     </p>
                   </div>
@@ -103,7 +103,7 @@ export default function ParentLinkPage() {
 
                 <form onSubmit={handleLink} className="space-y-4">
                   <div>
-                    <Label htmlFor="invite-code" className="text-zinc-300">
+                    <Label htmlFor="invite-code" className="text-foreground">
                       Enter your child&apos;s invite code
                     </Label>
                     <Input
@@ -111,32 +111,32 @@ export default function ParentLinkPage() {
                       value={code}
                       onChange={(e) => setCode(e.target.value)}
                       placeholder="e.g. a3k9m2x7"
-                      className="mt-1.5 bg-zinc-800 border-zinc-700 text-center text-lg tracking-widest font-mono"
+                      className="mt-1.5 bg-muted border-border text-center text-lg tracking-widest font-mono"
                       maxLength={10}
                       required
                     />
                   </div>
 
                   {error && (
-                    <div className="flex items-start gap-2 text-sm text-red-400 bg-red-500/5 border border-red-500/10 rounded-lg p-3">
-                      <AlertCircle className="w-4 h-4 mt-0.5 shrink-0" />
+                    <div className="flex items-start gap-2 text-sm text-destructive bg-destructive/5 border border-destructive/10 rounded-lg p-3">
+                      <AlertCircle className="size-4 mt-0.5 shrink-0" />
                       <span>{error}</span>
                     </div>
                   )}
 
                   <Button
                     type="submit"
-                    className="w-full bg-indigo-600 hover:bg-indigo-500 py-5"
+                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-5"
                   >
                     Connect
                   </Button>
                 </form>
 
-                <div className="mt-6 rounded-lg bg-zinc-800/50 p-4 space-y-2">
-                  <h3 className="text-sm font-medium text-zinc-300">
+                <div className="mt-6 rounded-lg bg-muted p-4 space-y-2">
+                  <h3 className="text-sm font-medium text-foreground">
                     How to find the invite code:
                   </h3>
-                  <ol className="text-sm text-zinc-500 list-decimal list-inside space-y-1">
+                  <ol className="text-sm text-muted-foreground list-decimal list-inside space-y-1">
                     <li>Ask your child to open their Nexus dashboard</li>
                     <li>
                       Look for the &quot;Invite Code&quot; card on their dashboard
@@ -145,7 +145,7 @@ export default function ParentLinkPage() {
                   </ol>
                 </div>
 
-                <p className="text-center text-zinc-600 text-xs mt-4">
+                <p className="text-center text-muted-foreground text-xs mt-4">
                   For the MVP, both parent and student accounts must be on the same
                   device/browser.
                 </p>

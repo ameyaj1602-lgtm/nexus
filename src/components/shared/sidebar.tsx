@@ -7,7 +7,7 @@ import {
   Compass,
   Map,
   Navigation,
-  Bot,
+  MessageCircle,
   Settings,
   LogOut,
   GraduationCap,
@@ -35,7 +35,7 @@ const studentNav = [
   { label: 'Simulate', href: '/simulate', icon: Play },
   { label: 'Compare', href: '/compare', icon: ArrowLeftRight },
   { label: 'Resume', href: '/resume', icon: FileText },
-  { label: 'Coach', href: '/coach', icon: Bot },
+  { label: 'Coach', href: '/coach', icon: MessageCircle },
   { label: 'Settings', href: '/settings', icon: Settings },
 ];
 
@@ -57,14 +57,17 @@ export default function Sidebar() {
   return (
     <>
       {/* Desktop sidebar */}
-      <aside className="hidden md:flex w-56 lg:w-64 flex-col border-r border-border bg-card/50 h-screen sticky top-0">
+      <aside className="hidden md:flex w-56 lg:w-60 flex-col border-r border-border bg-sidebar h-screen sticky top-0">
         <div className="flex items-center gap-2.5 px-5 py-5">
-          <GraduationCap className="size-6 text-primary" />
-          <span className="text-lg font-bold tracking-tight bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+          <div className="size-7 rounded-lg bg-primary flex items-center justify-center">
+            <span className="text-xs font-extrabold text-primary-foreground">N</span>
+          </div>
+          <span className="text-lg font-bold tracking-tight text-foreground">
             Nexus
           </span>
         </div>
-        <nav className="flex-1 px-3 space-y-1">
+
+        <nav className="flex-1 px-3 space-y-0.5 overflow-y-auto">
           {navItems.map((item) => {
             const isActive =
               pathname === item.href || pathname.startsWith(item.href + '/');
@@ -73,9 +76,9 @@ export default function Sidebar() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
+                  'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
                   isActive
-                    ? 'bg-indigo-600/10 text-indigo-400'
+                    ? 'bg-primary/10 text-primary'
                     : 'text-muted-foreground hover:bg-muted hover:text-foreground'
                 )}
               >
@@ -85,10 +88,11 @@ export default function Sidebar() {
             );
           })}
         </nav>
+
         <div className="p-3 border-t border-border">
           {user && (
-            <div className="flex items-center gap-3 px-3 py-2 mb-2">
-              <div className="size-8 rounded-full bg-indigo-600 flex items-center justify-center text-sm font-bold text-white">
+            <div className="flex items-center gap-3 px-3 py-2 mb-1">
+              <div className="size-8 rounded-full bg-primary flex items-center justify-center text-sm font-bold text-primary-foreground">
                 {user.name.charAt(0).toUpperCase()}
               </div>
               <div className="flex-1 min-w-0">
@@ -104,7 +108,7 @@ export default function Sidebar() {
               logout();
               router.push('/');
             }}
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-muted-foreground hover:text-red-400 hover:bg-muted w-full transition-colors"
+            className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-muted-foreground hover:text-destructive hover:bg-muted w-full transition-colors"
           >
             <LogOut className="size-4" />
             Log out
@@ -113,7 +117,7 @@ export default function Sidebar() {
       </aside>
 
       {/* Mobile bottom nav */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50 flex md:hidden items-center justify-around border-t border-border bg-card/95 backdrop-blur-sm px-2 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]">
+      <nav className="fixed bottom-0 left-0 right-0 z-50 flex md:hidden items-center justify-around border-t border-border bg-background/95 backdrop-blur-sm px-2 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]">
         {navItems.slice(0, 5).map((item) => {
           const isActive =
             pathname === item.href || pathname.startsWith(item.href + '/');
@@ -124,11 +128,11 @@ export default function Sidebar() {
               className={cn(
                 'flex flex-col items-center gap-0.5 rounded-lg px-3 py-1.5 text-[10px] font-medium transition-colors min-w-[3.5rem]',
                 isActive
-                  ? 'text-indigo-400 bg-indigo-600/10'
+                  ? 'text-primary'
                   : 'text-muted-foreground active:bg-muted'
               )}
             >
-              <item.icon className={cn('size-5', isActive && 'drop-shadow-[0_0_6px_rgba(99,102,241,0.5)]')} />
+              <item.icon className="size-5" />
               {item.label}
             </Link>
           );

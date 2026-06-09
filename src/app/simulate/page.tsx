@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, createElement } from 'react';
 import { simulations, CareerSimulation, SimulationStep } from '@/lib/simulations-data';
 import Sidebar from '@/components/shared/sidebar';
 import { Button } from '@/components/ui/button';
@@ -12,9 +12,32 @@ import {
   ArrowRight,
   ArrowLeft,
   RotateCcw,
-  Sparkles,
   CheckCircle2,
+  Palette,
+  BarChart3,
+  Stethoscope,
+  Scale,
+  Clapperboard,
+  Lightbulb,
+  Building2,
+  BrainCircuit,
+  Brain,
+  Rocket,
+  Bookmark,
 } from 'lucide-react';
+
+const iconMap: Record<string, React.ComponentType<any>> = {
+  Palette,
+  BarChart3,
+  Stethoscope,
+  Scale,
+  Clapperboard,
+  Lightbulb,
+  Building2,
+  BrainCircuit,
+  Brain,
+  Rocket,
+};
 
 export default function SimulatePage() {
   const [selected, setSelected] = useState<CareerSimulation | null>(null);
@@ -77,47 +100,53 @@ export default function SimulatePage() {
       }).filter(Boolean)
     : [];
 
+  function renderIcon(iconName: string, className: string = 'size-5 text-primary') {
+    const IconComponent = iconMap[iconName];
+    if (!IconComponent) return null;
+    return createElement(IconComponent, { className });
+  }
+
   // Grid selection view
   if (!selected) {
     return (
-      <div className="flex min-h-screen bg-background">
+      <div className="flex min-h-screen bg-background text-foreground">
         <Sidebar />
-        <main className="flex-1 px-4 py-8 md:px-8 pb-24 md:pb-8">
-          <div className="max-w-5xl mx-auto">
-            <div className="mb-8">
-              <h1 className="text-2xl md:text-3xl font-bold mb-2">
-                Day in the Life Simulator
-              </h1>
-              <p className="text-muted-foreground">
-                Step into a career for a few minutes. Experience realistic tasks, make decisions, and discover which skills you naturally gravitate toward.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {simulations.map((sim) => (
-                <button
-                  key={sim.id}
-                  onClick={() => setSelected(sim)}
-                  className="group text-left rounded-xl border border-border bg-card p-5 hover:border-indigo-500/50 hover:bg-indigo-600/5 transition-all"
-                >
-                  <div className="flex items-start justify-between mb-3">
-                    <span className="text-3xl">{sim.icon}</span>
-                    <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                      <Clock className="size-3" />
-                      {sim.duration}
-                    </div>
+        <main className="flex-1 p-6 md:p-8 max-w-5xl">
+          <div className="mb-8">
+            <h1 className="text-2xl font-bold mb-2">
+              Day in the Life Simulator
+            </h1>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Step into a career for a few minutes. Experience realistic tasks, make decisions, and discover which skills you naturally gravitate toward.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {simulations.map((sim) => (
+              <button
+                key={sim.id}
+                onClick={() => setSelected(sim)}
+                className="group text-left rounded-xl border border-border bg-card p-5 hover:border-primary/30 transition-colors"
+              >
+                <div className="flex items-start justify-between mb-3">
+                  <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                    {renderIcon(sim.icon)}
                   </div>
-                  <h3 className="font-semibold text-base mb-1 group-hover:text-indigo-400 transition-colors">
-                    {sim.career}
-                  </h3>
-                  <p className="text-xs text-muted-foreground line-clamp-2">
-                    {sim.steps.length} steps with interactive decisions
-                  </p>
-                  <div className="mt-3 flex items-center gap-1 text-xs text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Play className="size-3" /> Start simulation
+                  <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                    <Clock className="size-3" />
+                    {sim.duration}
                   </div>
-                </button>
-              ))}
-            </div>
+                </div>
+                <h3 className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">
+                  {sim.career}
+                </h3>
+                <p className="text-xs text-muted-foreground line-clamp-2">
+                  {sim.steps.length} steps with interactive decisions
+                </p>
+                <div className="mt-3 flex items-center gap-1 text-xs text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                  <Play className="size-3" /> Start simulation
+                </div>
+              </button>
+            ))}
           </div>
         </main>
       </div>
@@ -127,26 +156,28 @@ export default function SimulatePage() {
   // Finished summary view
   if (finished) {
     return (
-      <div className="flex min-h-screen bg-background">
+      <div className="flex min-h-screen bg-background text-foreground">
         <Sidebar />
-        <main className="flex-1 px-4 py-8 md:px-8 pb-24 md:pb-8">
+        <main className="flex-1 p-6 md:p-8 max-w-5xl">
           <div className="max-w-2xl mx-auto">
             <div className="text-center mb-8">
-              <span className="text-5xl mb-4 block">{selected.icon}</span>
-              <h1 className="text-2xl font-bold mb-2">Simulation Complete!</h1>
-              <p className="text-muted-foreground">
+              <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                {renderIcon(selected.icon)}
+              </div>
+              <h1 className="text-2xl font-bold mb-2">Simulation Complete</h1>
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 You just experienced a day as a {selected.career}.
               </p>
             </div>
 
             <div className="rounded-xl border border-border bg-card p-6 mb-6">
-              <h2 className="font-semibold mb-3 flex items-center gap-2">
-                <Sparkles className="size-4 text-indigo-400" />
+              <h2 className="text-lg font-semibold mb-3 flex items-center gap-2">
+                <Bookmark className="size-4 text-primary" />
                 Skills You Demonstrated
               </h2>
               <div className="flex flex-wrap gap-2 mb-4">
                 {collectedSkills.map((skill, i) => (
-                  <Badge key={i} variant="secondary" className="bg-indigo-600/10 text-indigo-400 border-indigo-600/20">
+                  <Badge key={i} variant="secondary" className="bg-primary/10 text-primary border-primary/30">
                     {skill}
                   </Badge>
                 ))}
@@ -159,7 +190,7 @@ export default function SimulatePage() {
             </div>
 
             <div className="rounded-xl border border-border bg-card p-6 mb-6">
-              <h2 className="font-semibold mb-3">Career Summary</h2>
+              <h2 className="text-lg font-semibold mb-3">Career Summary</h2>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 {selected.summary}
               </p>
@@ -167,7 +198,7 @@ export default function SimulatePage() {
 
             {Object.keys(choices).length > 0 && (
               <div className="rounded-xl border border-border bg-card p-6 mb-6">
-                <h2 className="font-semibold mb-3">Your Decisions</h2>
+                <h2 className="text-lg font-semibold mb-3">Your Decisions</h2>
                 <div className="space-y-3">
                   {Object.entries(choices).map(([si, oi]) => {
                     const step = selected.steps[Number(si)];
@@ -177,9 +208,9 @@ export default function SimulatePage() {
                       <div key={si} className="text-sm">
                         <p className="text-muted-foreground text-xs mb-1">{step.choice.question}</p>
                         <div className="flex items-start gap-2">
-                          <CheckCircle2 className="size-4 text-emerald-400 mt-0.5 shrink-0" />
+                          <CheckCircle2 className="size-4 text-success mt-0.5 shrink-0" />
                           <div>
-                            <span className="font-medium">{chosen.label}</span>
+                            <span className="font-medium text-foreground">{chosen.label}</span>
                             <p className="text-xs text-muted-foreground mt-0.5">{chosen.outcome}</p>
                           </div>
                         </div>
@@ -191,7 +222,7 @@ export default function SimulatePage() {
             )}
 
             <div className="flex flex-col sm:flex-row gap-3">
-              <Button onClick={handleAddHypothesis} className="flex-1 bg-indigo-600 hover:bg-indigo-700">
+              <Button onClick={handleAddHypothesis} className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90">
                 Add to Hypotheses
               </Button>
               <Button onClick={handleReset} variant="outline" className="flex-1">
@@ -207,16 +238,18 @@ export default function SimulatePage() {
 
   // Step-by-step walkthrough
   return (
-    <div className="flex min-h-screen bg-background">
+    <div className="flex min-h-screen bg-background text-foreground">
       <Sidebar />
-      <main className="flex-1 px-4 py-8 md:px-8 pb-24 md:pb-8">
+      <main className="flex-1 p-6 md:p-8 max-w-5xl">
         <div className="max-w-2xl mx-auto">
           {/* Header */}
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
-              <span className="text-2xl">{selected.icon}</span>
+              <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                {renderIcon(selected.icon)}
+              </div>
               <div>
-                <h1 className="text-lg font-bold">{selected.career}</h1>
+                <h1 className="text-lg font-semibold text-foreground">{selected.career}</h1>
                 <p className="text-xs text-muted-foreground">
                   Step {stepIndex + 1} of {selected.steps.length}
                 </p>
@@ -235,7 +268,7 @@ export default function SimulatePage() {
             <div className="space-y-6">
               {/* Time & Title */}
               <div className="flex items-center gap-3">
-                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-600/10 text-indigo-400 text-sm font-medium">
+                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
                   <Clock className="size-3.5" />
                   {currentStep.time}
                 </div>
@@ -245,16 +278,16 @@ export default function SimulatePage() {
               </div>
 
               <div>
-                <h2 className="text-xl font-semibold mb-3">{currentStep.title}</h2>
-                <p className="text-muted-foreground leading-relaxed">
+                <h2 className="text-lg font-semibold mb-3 text-foreground">{currentStep.title}</h2>
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   {currentStep.description}
                 </p>
               </div>
 
               {/* Choice */}
               {currentStep.choice && (
-                <div className="rounded-xl border border-border bg-card/50 p-5">
-                  <p className="font-medium mb-4 text-sm">
+                <div className="rounded-xl border border-border bg-card p-5">
+                  <p className="font-medium mb-4 text-sm text-foreground">
                     {currentStep.choice.question}
                   </p>
                   <div className="space-y-2">
@@ -264,10 +297,10 @@ export default function SimulatePage() {
                         <button
                           key={i}
                           onClick={() => handleChoice(i)}
-                          className={`w-full text-left rounded-lg border p-3.5 text-sm transition-all ${
+                          className={`w-full text-left rounded-lg border p-3.5 text-sm transition-colors ${
                             isChosen
-                              ? 'border-indigo-500 bg-indigo-600/10 text-indigo-300'
-                              : 'border-border hover:border-muted-foreground/30 hover:bg-muted/30'
+                              ? 'border-primary/30 bg-primary/10 text-primary'
+                              : 'border-border hover:border-primary/30 hover:bg-muted'
                           }`}
                         >
                           <span className="font-medium">{opt.label}</span>
@@ -298,7 +331,7 @@ export default function SimulatePage() {
                 <Button
                   onClick={handleNext}
                   disabled={currentStep.choice && choices[stepIndex] === undefined}
-                  className="bg-indigo-600 hover:bg-indigo-700"
+                  className="bg-primary text-primary-foreground hover:bg-primary/90"
                 >
                   {stepIndex === selected.steps.length - 1 ? 'Finish' : 'Next'}
                   <ArrowRight className="size-4 ml-1" />

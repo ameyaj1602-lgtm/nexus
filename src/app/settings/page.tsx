@@ -157,9 +157,9 @@ export default function SettingsPage() {
           <h1 className="text-2xl font-bold">{t('settings', lang)}</h1>
 
           {/* Profile Section */}
-          <Card>
+          <Card className="rounded-xl border border-border bg-card p-0 hover:border-primary/30 transition-colors">
             <CardHeader className="flex flex-row items-center gap-3 pb-3">
-              <div className="size-10 rounded-full bg-indigo-600 flex items-center justify-center text-lg font-bold text-white">
+              <div className="size-10 rounded-full bg-primary flex items-center justify-center text-lg font-bold text-primary-foreground">
                 {user.name.charAt(0).toUpperCase()}
               </div>
               <div>
@@ -176,10 +176,12 @@ export default function SettingsPage() {
           </Card>
 
           {/* Language Preference */}
-          <Card>
+          <Card className="rounded-xl border border-border bg-card p-0 hover:border-primary/30 transition-colors">
             <CardHeader className="pb-3">
               <CardTitle className="text-base flex items-center gap-2">
-                <Globe className="size-4 text-indigo-400" />
+                <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <Globe className="size-4 text-primary" />
+                </div>
                 {t('language', lang)}
               </CardTitle>
             </CardHeader>
@@ -189,7 +191,7 @@ export default function SettingsPage() {
                   variant={lang === 'en' ? 'default' : 'outline'}
                   size="sm"
                   onClick={() => handleLanguageChange('en')}
-                  className={lang === 'en' ? 'bg-indigo-600 hover:bg-indigo-700 text-white' : ''}
+                  className={lang === 'en' ? 'bg-primary text-primary-foreground hover:bg-primary/90' : ''}
                 >
                   English
                 </Button>
@@ -197,7 +199,7 @@ export default function SettingsPage() {
                   variant={lang === 'hi' ? 'default' : 'outline'}
                   size="sm"
                   onClick={() => handleLanguageChange('hi')}
-                  className={lang === 'hi' ? 'bg-indigo-600 hover:bg-indigo-700 text-white' : ''}
+                  className={lang === 'hi' ? 'bg-primary text-primary-foreground hover:bg-primary/90' : ''}
                 >
                   हिन्दी
                 </Button>
@@ -206,16 +208,18 @@ export default function SettingsPage() {
           </Card>
 
           {/* Privacy Controls */}
-          <Card>
+          <Card className="rounded-xl border border-border bg-card p-0 hover:border-primary/30 transition-colors">
             <CardHeader className="pb-3">
               <CardTitle className="text-base flex items-center gap-2">
-                <Shield className="size-4 text-indigo-400" />
+                <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <Shield className="size-4 text-primary" />
+                </div>
                 {t('privacyControls', lang)}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between">
-                <Label htmlFor="show-identity" className="flex-1 cursor-pointer">
+                <Label htmlFor="show-identity" className="flex-1 cursor-pointer text-sm leading-relaxed">
                   {lang === 'hi'
                     ? 'पैरेंट्स को पहचान प्रोफ़ाइल दिखाएं'
                     : 'Allow parents to see my identity profile'}
@@ -228,9 +232,9 @@ export default function SettingsPage() {
                   }
                 />
               </div>
-              <Separator />
+              <Separator className="bg-border" />
               <div className="flex items-center justify-between">
-                <Label htmlFor="show-journal" className="flex-1 cursor-pointer">
+                <Label htmlFor="show-journal" className="flex-1 cursor-pointer text-sm leading-relaxed">
                   {lang === 'hi'
                     ? 'पैरेंट्स को जर्नल एंट्रीज़ दिखाएं'
                     : 'Allow parents to see my journal entries'}
@@ -243,9 +247,9 @@ export default function SettingsPage() {
                   }
                 />
               </div>
-              <Separator />
+              <Separator className="bg-border" />
               <div className="flex items-center justify-between">
-                <Label htmlFor="show-hypotheses" className="flex-1 cursor-pointer">
+                <Label htmlFor="show-hypotheses" className="flex-1 cursor-pointer text-sm leading-relaxed">
                   {lang === 'hi'
                     ? 'पैरेंट्स को करियर अनुमान दिखाएं'
                     : 'Allow parents to see my career hypotheses'}
@@ -262,10 +266,12 @@ export default function SettingsPage() {
           </Card>
 
           {/* Data Management */}
-          <Card>
+          <Card className="rounded-xl border border-border bg-card p-0 hover:border-primary/30 transition-colors">
             <CardHeader className="pb-3">
               <CardTitle className="text-base flex items-center gap-2">
-                <Download className="size-4 text-indigo-400" />
+                <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <Download className="size-4 text-primary" />
+                </div>
                 {lang === 'hi' ? 'डेटा प्रबंधन' : 'Data Management'}
               </CardTitle>
             </CardHeader>
@@ -321,21 +327,23 @@ export default function SettingsPage() {
           </Card>
 
           {/* Invite Parent */}
-          <Card>
+          <Card className="rounded-xl border border-border bg-card p-0 hover:border-primary/30 transition-colors">
             <CardHeader className="pb-3">
               <CardTitle className="text-base flex items-center gap-2">
-                <UserPlus className="size-4 text-indigo-400" />
+                <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <UserPlus className="size-4 text-primary" />
+                </div>
                 {lang === 'hi' ? 'पैरेंट को आमंत्रित करें' : 'Invite Parent'}
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground mb-3">
+              <p className="text-sm text-muted-foreground leading-relaxed mb-3">
                 {lang === 'hi'
                   ? 'यह कोड अपने पैरेंट को दें। वे इससे अकाउंट लिंक कर सकते हैं।'
                   : 'Share this code with your parent. They can use it to link their account.'}
               </p>
               <div className="flex items-center gap-2">
-                <code className="flex-1 rounded-lg bg-muted px-4 py-2.5 text-center text-lg font-mono font-bold tracking-widest">
+                <code className="flex-1 rounded-lg bg-muted px-4 py-2.5 text-center text-lg font-mono font-bold tracking-widest text-foreground">
                   {inviteCode}
                 </code>
                 <Button
@@ -345,7 +353,7 @@ export default function SettingsPage() {
                   className="shrink-0"
                 >
                   {copied ? (
-                    <Check className="size-4 text-green-400" />
+                    <Check className="size-4 text-success" />
                   ) : (
                     <Copy className="size-4" />
                   )}
@@ -355,11 +363,11 @@ export default function SettingsPage() {
           </Card>
 
           {/* About */}
-          <Card>
+          <Card className="rounded-xl border border-border bg-card p-0 hover:border-primary/30 transition-colors">
             <CardContent className="py-4">
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Info className="size-4" />
-                Nexus v1.0 &mdash; Career &amp; Identity Navigation OS
+                Nexus v1.0
               </div>
             </CardContent>
           </Card>
@@ -367,7 +375,7 @@ export default function SettingsPage() {
           {/* Log Out */}
           <Button
             variant="outline"
-            className="w-full justify-center gap-2 text-red-400 hover:text-red-300 hover:bg-red-950/20 border-red-900/30"
+            className="w-full justify-center gap-2 text-destructive hover:text-destructive hover:bg-destructive/10 border-border"
             onClick={handleLogout}
           >
             <LogOut className="size-4" />

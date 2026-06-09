@@ -16,55 +16,69 @@ import {
   ChevronDown,
   BookOpen,
   RotateCcw,
+  Bot,
+  Droplets,
+  TrendingUp,
+  Heart,
+  Music,
+  Dna,
+  Handshake,
+  Monitor,
+  Clapperboard,
+  PenLine,
+  Shirt,
+  Bug,
+  Tent,
+  Zap,
+  Trophy,
+  Building,
+  Scale,
+  ChefHat,
+  TreePine,
+  Globe,
+  Wallet,
+  Palette,
+  Home,
+  Plane,
+  Award,
+  Shield,
+  CheckCircle,
 } from 'lucide-react';
 import Sidebar from '@/components/shared/sidebar';
 
 // ─── Interest Explorer: 20 scenario cards ─────────────────────
 const scenarioCards = [
-  { id: 1, scenario: "You're building a robot that can paint murals on city walls", icon: '🤖', category: 'Technology', dims: { creative: 2, analytical: 1, practical: 2 } },
-  { id: 2, scenario: "You're leading a team to solve a community water crisis", icon: '🌊', category: 'Social Impact', dims: { social: 2, caring: 2, practical: 1 } },
-  { id: 3, scenario: "You're analyzing stock market patterns to predict trends", icon: '📈', category: 'Business', dims: { analytical: 3, entrepreneurial: 1 } },
-  { id: 4, scenario: "You're designing a mobile app that helps people meditate", icon: '🧘', category: 'Design', dims: { creative: 2, caring: 2, analytical: 1 } },
-  { id: 5, scenario: "You're performing on stage at a music festival", icon: '🎸', category: 'Arts', dims: { creative: 3, social: 2 } },
-  { id: 6, scenario: "You're running experiments in a biotech lab to cure a disease", icon: '🧬', category: 'Science', dims: { analytical: 3, practical: 1 } },
-  { id: 7, scenario: "You're negotiating a billion-dollar business deal", icon: '🤝', category: 'Business', dims: { social: 2, entrepreneurial: 2, analytical: 1 } },
-  { id: 8, scenario: "You're teaching underprivileged kids to code", icon: '💻', category: 'Social Impact', dims: { caring: 3, social: 1, practical: 1 } },
-  { id: 9, scenario: "You're filming a documentary in the Himalayas", icon: '🎬', category: 'Arts', dims: { creative: 2, practical: 2, social: 1 } },
-  { id: 10, scenario: "You're writing an article that could change government policy", icon: '✍️', category: 'Media', dims: { analytical: 1, social: 2, caring: 2 } },
-  { id: 11, scenario: "You're launching your own fashion brand from scratch", icon: '👗', category: 'Business', dims: { creative: 2, entrepreneurial: 3 } },
-  { id: 12, scenario: "You're debugging a complex AI algorithm at 2 AM", icon: '🐛', category: 'Technology', dims: { analytical: 3, practical: 2 } },
-  { id: 13, scenario: "You're organizing a massive charity event for 1000 people", icon: '🎪', category: 'Social Impact', dims: { social: 3, caring: 1, entrepreneurial: 1 } },
-  { id: 14, scenario: "You're inventing a clean energy device that could power villages", icon: '⚡', category: 'Science', dims: { analytical: 2, practical: 2, caring: 1 } },
-  { id: 15, scenario: "You're coaching an athlete to win a national championship", icon: '🏆', category: 'Sports', dims: { social: 2, practical: 1, caring: 2 } },
-  { id: 16, scenario: "You're designing the interior of a luxury hotel", icon: '🏨', category: 'Design', dims: { creative: 3, practical: 1 } },
-  { id: 17, scenario: "You're arguing a landmark case in the Supreme Court", icon: '⚖️', category: 'Law', dims: { analytical: 2, social: 2, caring: 1 } },
-  { id: 18, scenario: "You're developing a new recipe that becomes a viral sensation", icon: '👨‍🍳', category: 'Arts', dims: { creative: 2, entrepreneurial: 1, practical: 2 } },
-  { id: 19, scenario: "You're managing a wildlife sanctuary in a national park", icon: '🦁', category: 'Nature', dims: { caring: 2, practical: 2, social: 1 } },
-  { id: 20, scenario: "You're building a startup that connects rural artisans to global markets", icon: '🌍', category: 'Business', dims: { entrepreneurial: 3, caring: 1, social: 1 } },
+  { id: 1, scenario: "You're building a robot that can paint murals on city walls", icon: Bot, category: 'Technology', dims: { creative: 2, analytical: 1, practical: 2 } },
+  { id: 2, scenario: "You're leading a team to solve a community water crisis", icon: Droplets, category: 'Social Impact', dims: { social: 2, caring: 2, practical: 1 } },
+  { id: 3, scenario: "You're analyzing stock market patterns to predict trends", icon: TrendingUp, category: 'Business', dims: { analytical: 3, entrepreneurial: 1 } },
+  { id: 4, scenario: "You're designing a mobile app that helps people meditate", icon: Heart, category: 'Design', dims: { creative: 2, caring: 2, analytical: 1 } },
+  { id: 5, scenario: "You're performing on stage at a music festival", icon: Music, category: 'Arts', dims: { creative: 3, social: 2 } },
+  { id: 6, scenario: "You're running experiments in a biotech lab to cure a disease", icon: Dna, category: 'Science', dims: { analytical: 3, practical: 1 } },
+  { id: 7, scenario: "You're negotiating a billion-dollar business deal", icon: Handshake, category: 'Business', dims: { social: 2, entrepreneurial: 2, analytical: 1 } },
+  { id: 8, scenario: "You're teaching underprivileged kids to code", icon: Monitor, category: 'Social Impact', dims: { caring: 3, social: 1, practical: 1 } },
+  { id: 9, scenario: "You're filming a documentary in the Himalayas", icon: Clapperboard, category: 'Arts', dims: { creative: 2, practical: 2, social: 1 } },
+  { id: 10, scenario: "You're writing an article that could change government policy", icon: PenLine, category: 'Media', dims: { analytical: 1, social: 2, caring: 2 } },
+  { id: 11, scenario: "You're launching your own fashion brand from scratch", icon: Shirt, category: 'Business', dims: { creative: 2, entrepreneurial: 3 } },
+  { id: 12, scenario: "You're debugging a complex AI algorithm at 2 AM", icon: Bug, category: 'Technology', dims: { analytical: 3, practical: 2 } },
+  { id: 13, scenario: "You're organizing a massive charity event for 1000 people", icon: Tent, category: 'Social Impact', dims: { social: 3, caring: 1, entrepreneurial: 1 } },
+  { id: 14, scenario: "You're inventing a clean energy device that could power villages", icon: Zap, category: 'Science', dims: { analytical: 2, practical: 2, caring: 1 } },
+  { id: 15, scenario: "You're coaching an athlete to win a national championship", icon: Trophy, category: 'Sports', dims: { social: 2, practical: 1, caring: 2 } },
+  { id: 16, scenario: "You're designing the interior of a luxury hotel", icon: Building, category: 'Design', dims: { creative: 3, practical: 1 } },
+  { id: 17, scenario: "You're arguing a landmark case in the Supreme Court", icon: Scale, category: 'Law', dims: { analytical: 2, social: 2, caring: 1 } },
+  { id: 18, scenario: "You're developing a new recipe that becomes a viral sensation", icon: ChefHat, category: 'Arts', dims: { creative: 2, entrepreneurial: 1, practical: 2 } },
+  { id: 19, scenario: "You're managing a wildlife sanctuary in a national park", icon: TreePine, category: 'Nature', dims: { caring: 2, practical: 2, social: 1 } },
+  { id: 20, scenario: "You're building a startup that connects rural artisans to global markets", icon: Globe, category: 'Business', dims: { entrepreneurial: 3, caring: 1, social: 1 } },
 ];
-
-const categoryColors: Record<string, string> = {
-  Technology: 'bg-blue-600/20 text-blue-400',
-  'Social Impact': 'bg-emerald-600/20 text-emerald-400',
-  Business: 'bg-amber-600/20 text-amber-400',
-  Design: 'bg-pink-600/20 text-pink-400',
-  Arts: 'bg-purple-600/20 text-purple-400',
-  Science: 'bg-cyan-600/20 text-cyan-400',
-  Sports: 'bg-orange-600/20 text-orange-400',
-  Media: 'bg-rose-600/20 text-rose-400',
-  Law: 'bg-slate-600/20 text-slate-400',
-  Nature: 'bg-green-600/20 text-green-400',
-};
 
 // ─── Values Sorter ─────────────────────────────────────────────
 const valuesList = [
-  { id: 'money', label: 'Money & Wealth', icon: '💰' },
-  { id: 'freedom', label: 'Creative Freedom', icon: '🎨' },
-  { id: 'helping', label: 'Helping Others', icon: '🤝' },
-  { id: 'stability', label: 'Stability & Security', icon: '🏠' },
-  { id: 'adventure', label: 'Adventure & Travel', icon: '✈️' },
-  { id: 'fame', label: 'Fame & Recognition', icon: '🌟' },
-  { id: 'family', label: 'Family & Relationships', icon: '❤️' },
+  { id: 'money', label: 'Money & Wealth', icon: Wallet },
+  { id: 'freedom', label: 'Creative Freedom', icon: Palette },
+  { id: 'helping', label: 'Helping Others', icon: Handshake },
+  { id: 'stability', label: 'Stability & Security', icon: Home },
+  { id: 'adventure', label: 'Adventure & Travel', icon: Plane },
+  { id: 'fame', label: 'Fame & Recognition', icon: Award },
+  { id: 'family', label: 'Family & Relationships', icon: Heart },
 ];
 
 // ─── Identity Journal ──────────────────────────────────────────
@@ -205,11 +219,10 @@ export default function DiscoverPage() {
         <div className="max-w-3xl mx-auto">
           {/* Header */}
           <div className="mb-8">
-            <h1 className="text-2xl font-bold flex items-center gap-2">
-              <Brain className="size-6 text-indigo-400" />
+            <h1 className="text-2xl font-bold">
               Discover Who You Are
             </h1>
-            <p className="text-muted-foreground mt-1">
+            <p className="text-muted-foreground mt-1 text-sm leading-relaxed">
               Explore your interests, rank your values, and journal your thoughts.
             </p>
           </div>
@@ -229,7 +242,7 @@ export default function DiscoverPage() {
                   <span className="text-xs text-muted-foreground">
                     {completedCount} of {scenarioCards.length} scenarios
                   </span>
-                  <span className="text-xs text-indigo-400 font-medium">
+                  <span className="text-xs text-primary font-medium">
                     {Math.round(
                       (completedCount / scenarioCards.length) * 100
                     )}
@@ -238,7 +251,7 @@ export default function DiscoverPage() {
                 </div>
                 <div className="h-1.5 w-full rounded-full bg-muted overflow-hidden">
                   <div
-                    className="h-full bg-indigo-500 rounded-full transition-all duration-300"
+                    className="h-full bg-primary rounded-full transition-all duration-300"
                     style={{
                       width: `${(completedCount / scenarioCards.length) * 100}%`,
                     }}
@@ -247,17 +260,20 @@ export default function DiscoverPage() {
               </div>
 
               {!done && card ? (
-                <Card className="bg-card border-border">
+                <Card className="rounded-xl border border-border bg-card">
                   <CardContent className="p-8 text-center space-y-6">
                     <Badge
-                      className={`text-xs border-0 ${
-                        categoryColors[card.category] || 'bg-muted text-muted-foreground'
-                      }`}
+                      variant="secondary"
+                      className="text-xs bg-muted text-muted-foreground border-0"
                     >
                       {card.category}
                     </Badge>
-                    <div className="text-6xl">{card.icon}</div>
-                    <p className="text-xl leading-relaxed max-w-md mx-auto">
+                    <div className="flex justify-center">
+                      <div className="size-16 rounded-xl bg-primary/10 flex items-center justify-center">
+                        <card.icon className="size-8 text-primary" />
+                      </div>
+                    </div>
+                    <p className="text-lg leading-relaxed max-w-md mx-auto">
                       {card.scenario}
                     </p>
                     <div className="flex gap-3 justify-center flex-wrap">
@@ -265,7 +281,7 @@ export default function DiscoverPage() {
                         onClick={() => respond('nope')}
                         variant="outline"
                         size="lg"
-                        className="border-border hover:bg-red-950/50 hover:border-red-800 hover:text-red-300 min-w-[120px]"
+                        className="min-w-[120px]"
                       >
                         <X className="size-5 mr-2" />
                         Not my thing
@@ -274,7 +290,7 @@ export default function DiscoverPage() {
                         onClick={() => respond('meh')}
                         variant="outline"
                         size="lg"
-                        className="border-border hover:bg-yellow-950/50 hover:border-yellow-800 hover:text-yellow-300 min-w-[120px]"
+                        className="min-w-[120px]"
                       >
                         <Meh className="size-5 mr-2" />
                         Meh
@@ -282,7 +298,7 @@ export default function DiscoverPage() {
                       <Button
                         onClick={() => respond('love')}
                         size="lg"
-                        className="bg-indigo-600 hover:bg-indigo-500 text-white min-w-[120px]"
+                        className="bg-primary text-primary-foreground hover:bg-primary/90 min-w-[120px]"
                       >
                         <Flame className="size-5 mr-2" />
                         That&apos;s me!
@@ -291,13 +307,17 @@ export default function DiscoverPage() {
                   </CardContent>
                 </Card>
               ) : (
-                <Card className="bg-card border-border">
+                <Card className="rounded-xl border border-border bg-card">
                   <CardContent className="p-8 text-center space-y-4">
-                    <div className="text-5xl">🎉</div>
-                    <h3 className="text-xl font-semibold">
+                    <div className="flex justify-center">
+                      <div className="size-14 rounded-xl bg-success/10 flex items-center justify-center">
+                        <CheckCircle className="size-7 text-success" />
+                      </div>
+                    </div>
+                    <h3 className="text-lg font-semibold">
                       Interest exploration complete!
                     </h3>
-                    <p className="text-muted-foreground">
+                    <p className="text-muted-foreground text-sm leading-relaxed">
                       Your identity snapshot has been updated based on your
                       responses.
                     </p>
@@ -305,7 +325,6 @@ export default function DiscoverPage() {
                       <Button
                         onClick={resetInterests}
                         variant="outline"
-                        className="border-border"
                       >
                         <RotateCcw className="size-4 mr-2" />
                         Retake
@@ -318,26 +337,28 @@ export default function DiscoverPage() {
 
             {/* ──── Tab 2: Values Sorter ──── */}
             <TabsContent value="values">
-              <Card className="bg-card border-border">
-                <CardHeader>
-                  <CardTitle className="text-base">
+              <Card className="rounded-xl border border-border bg-card">
+                <CardHeader className="p-5">
+                  <CardTitle className="text-lg font-semibold">
                     Rank what matters most to you
                   </CardTitle>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     Use the arrows to reorder. #1 = most important to you.
                   </p>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="p-5 pt-0">
                   <div className="space-y-2">
                     {values.map((v, i) => (
                       <div
                         key={v.id}
-                        className="flex items-center gap-3 p-3 rounded-lg bg-muted/30 border border-border hover:border-muted-foreground transition-colors"
+                        className="flex items-center gap-3 p-3 rounded-xl border border-border bg-card hover:border-primary/30 transition-colors"
                       >
-                        <span className="text-lg font-bold text-muted-foreground w-7 text-right">
+                        <span className="text-sm font-bold text-muted-foreground w-7 text-right">
                           #{v.rank}
                         </span>
-                        <span className="text-2xl">{v.icon}</span>
+                        <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                          <v.icon className="size-4 text-primary" />
+                        </div>
                         <span className="flex-1 text-sm font-medium">
                           {v.label}
                         </span>
@@ -369,20 +390,17 @@ export default function DiscoverPage() {
 
             {/* ──── Tab 3: Identity Journal ──── */}
             <TabsContent value="journal">
-              <Card className="bg-card border-border">
-                <CardHeader>
-                  <div className="flex items-center gap-2">
-                    <BookOpen className="size-5 text-indigo-400" />
-                    <CardTitle className="text-base">Identity Journal</CardTitle>
-                  </div>
-                  <p className="text-sm text-muted-foreground">
+              <Card className="rounded-xl border border-border bg-card">
+                <CardHeader className="p-5">
+                  <CardTitle className="text-lg font-semibold">Identity Journal</CardTitle>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     Reflect on who you are -- no right or wrong answers.
                   </p>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="p-5 pt-0">
                   {/* Current prompt */}
-                  <div className="bg-indigo-950/30 border border-indigo-500/20 rounded-lg p-4 mb-4">
-                    <p className="text-indigo-300 italic text-base leading-relaxed">
+                  <div className="bg-primary/10 border border-primary/30 rounded-xl p-4 mb-4">
+                    <p className="text-primary italic text-sm leading-relaxed">
                       &ldquo;{journalPrompts[currentPrompt]}&rdquo;
                     </p>
                   </div>
@@ -392,14 +410,14 @@ export default function DiscoverPage() {
                     onChange={(e) => setJournalText(e.target.value)}
                     placeholder="Write your thoughts here..."
                     rows={5}
-                    className="bg-muted/30 border-border mb-3 resize-none"
+                    className="bg-muted border-border mb-3 resize-none"
                   />
 
                   <div className="flex items-center justify-between">
                     <Button
                       onClick={saveJournal}
                       disabled={!journalText.trim()}
-                      className="bg-indigo-600 hover:bg-indigo-500 text-white"
+                      className="bg-primary text-primary-foreground hover:bg-primary/90"
                     >
                       <Check className="size-4 mr-2" />
                       Save Entry
@@ -412,7 +430,7 @@ export default function DiscoverPage() {
                       }
                       className="text-xs text-muted-foreground hover:text-foreground transition-colors"
                     >
-                      Skip to next prompt →
+                      Skip to next prompt
                     </button>
                   </div>
 
@@ -429,9 +447,9 @@ export default function DiscoverPage() {
                         .map((entry, i) => (
                           <div
                             key={i}
-                            className="p-4 rounded-lg bg-muted/20 border border-border"
+                            className="p-4 rounded-xl border border-border bg-card hover:border-primary/30 transition-colors"
                           >
-                            <p className="text-xs text-indigo-400 mb-1.5 font-medium">
+                            <p className="text-xs text-primary mb-1.5 font-medium">
                               {entry.prompt}
                             </p>
                             <p className="text-sm leading-relaxed">

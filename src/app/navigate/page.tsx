@@ -68,7 +68,7 @@ function getStreamRecommendations(identity: IdentitySnapshot | null): StreamRec[
   if (identity.practical > 70 && identity.analytical > 70) {
     recs.push({
       name: 'Engineering / Technical',
-      why: 'You combine hands-on practicality with analytical thinking \u2014 perfect for building and optimizing real-world systems.',
+      why: 'You combine hands-on practicality with analytical thinking -- perfect for building and optimizing real-world systems.',
       careers: ['Mechanical Engineer', 'Robotics Engineer', 'Civil Engineer', 'DevOps Engineer', 'Climate Tech Engineer'],
       confidence: Math.min(95, Math.round((identity.practical + identity.analytical) * 0.45 + 10)),
     });
@@ -212,28 +212,28 @@ export default function NavigatePage() {
   }
 
   const statusColors: Record<string, string> = {
-    exploring: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
-    tested: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
-    rejected: 'bg-red-500/10 text-red-400 border-red-500/20',
-    active: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
+    exploring: 'bg-primary/10 text-primary border-primary/30',
+    tested: 'bg-coral/10 text-coral border-coral/30',
+    rejected: 'bg-destructive/10 text-destructive border-destructive/30',
+    active: 'bg-success/10 text-success border-success/30',
   };
 
   return (
-    <div className="flex min-h-screen bg-black text-white">
+    <div className="flex min-h-screen bg-background text-foreground">
       <Sidebar />
       <main className="flex-1 p-6 md:p-8 pb-24 md:pb-8 overflow-y-auto">
-        <div className="max-w-4xl mx-auto space-y-8">
+        <div className="max-w-5xl space-y-8">
           <div>
-            <h1 className="text-2xl font-bold flex items-center gap-2">
-              <Map className="size-6 text-emerald-400" /> Navigate Your Path
-            </h1>
-            <p className="text-zinc-400 mt-1">Stream recommendations, career hypotheses, and your roadmap ahead.</p>
+            <h1 className="text-2xl font-bold">Navigate Your Path</h1>
+            <p className="text-muted-foreground mt-1">Stream recommendations, career hypotheses, and your roadmap ahead.</p>
           </div>
 
           {/* Stream Recommendations */}
           <section>
             <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
-              <Compass className="size-5 text-indigo-400" />
+              <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                <Compass className="size-4 text-primary" />
+              </div>
               Recommended Streams
             </h2>
             {streamRecs.length > 0 ? (
@@ -241,17 +241,17 @@ export default function NavigatePage() {
                 {streamRecs.map((rec) => (
                   <div
                     key={rec.name}
-                    className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-5 hover:border-zinc-700 transition-colors"
+                    className="rounded-xl border border-border bg-card p-5 hover:border-primary/30 transition-colors"
                   >
                     <div className="flex items-start justify-between mb-3">
-                      <h3 className="font-semibold text-zinc-100">{rec.name}</h3>
-                      <span className="text-xs font-medium text-indigo-400 bg-indigo-400/10 px-2 py-0.5 rounded-full">
+                      <h3 className="font-semibold text-foreground">{rec.name}</h3>
+                      <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-0.5 rounded-full">
                         {rec.confidence}% fit
                       </span>
                     </div>
-                    <p className="text-sm text-zinc-400 mb-4">{rec.why}</p>
+                    <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{rec.why}</p>
                     <div>
-                      <p className="text-xs text-zinc-500 mb-2">Example careers:</p>
+                      <p className="text-xs text-muted-foreground mb-2">Example careers:</p>
                       <div className="flex flex-wrap gap-1.5">
                         {rec.careers.map((c) => (
                           <Badge key={c} variant="secondary" className="text-[10px]">
@@ -264,9 +264,9 @@ export default function NavigatePage() {
                 ))}
               </div>
             ) : (
-              <div className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-6 text-center">
-                <Compass className="size-8 mx-auto mb-3 text-zinc-600" />
-                <p className="text-sm text-zinc-500">
+              <div className="rounded-xl border border-border bg-card p-6 text-center">
+                <Compass className="size-8 mx-auto mb-3 text-muted-foreground" />
+                <p className="text-sm text-muted-foreground">
                   Complete your identity assessment to get personalized stream recommendations.
                 </p>
               </div>
@@ -276,7 +276,9 @@ export default function NavigatePage() {
           {/* Career Hypothesis Board */}
           <section>
             <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
-              <Lightbulb className="size-5 text-yellow-400" />
+              <div className="size-9 rounded-lg bg-coral/10 flex items-center justify-center">
+                <Lightbulb className="size-4 text-coral" />
+              </div>
               Career Hypothesis Board
             </h2>
             {hypotheses.length > 0 ? (
@@ -284,13 +286,13 @@ export default function NavigatePage() {
                 {hypotheses.map((h) => (
                   <div
                     key={h.id}
-                    className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-4 hover:border-zinc-700 transition-colors"
+                    className="rounded-xl border border-border bg-card p-5 hover:border-primary/30 transition-colors"
                   >
                     <div className="flex items-start justify-between mb-3">
-                      <h3 className="font-semibold text-zinc-200">{h.career_name}</h3>
+                      <h3 className="font-semibold text-foreground">{h.career_name}</h3>
                       <button
                         onClick={() => openEditModal(h)}
-                        className="text-zinc-500 hover:text-zinc-300 transition-colors"
+                        className="text-muted-foreground hover:text-foreground transition-colors"
                       >
                         <Pencil className="size-3.5" />
                       </button>
@@ -305,7 +307,7 @@ export default function NavigatePage() {
                           className={`text-[10px] px-2 py-0.5 rounded-full border capitalize transition-colors ${
                             h.status === st
                               ? statusColors[st]
-                              : 'border-zinc-800 text-zinc-600 hover:text-zinc-400'
+                              : 'border-border text-muted-foreground hover:text-foreground'
                           }`}
                         >
                           {st}
@@ -315,15 +317,15 @@ export default function NavigatePage() {
 
                     {/* Notes preview */}
                     {(h.liked_aspects || h.disliked_aspects) && (
-                      <div className="space-y-1 text-xs text-zinc-500">
+                      <div className="space-y-1 text-xs text-muted-foreground">
                         {h.liked_aspects && (
                           <p className="line-clamp-1">
-                            <span className="text-emerald-500">Liked:</span> {h.liked_aspects}
+                            <span className="text-success">Liked:</span> {h.liked_aspects}
                           </p>
                         )}
                         {h.disliked_aspects && (
                           <p className="line-clamp-1">
-                            <span className="text-red-400">Disliked:</span> {h.disliked_aspects}
+                            <span className="text-destructive">Disliked:</span> {h.disliked_aspects}
                           </p>
                         )}
                       </div>
@@ -332,13 +334,13 @@ export default function NavigatePage() {
                 ))}
               </div>
             ) : (
-              <div className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-6 text-center">
-                <Lightbulb className="size-8 mx-auto mb-3 text-zinc-600" />
-                <p className="text-sm text-zinc-500 mb-3">
+              <div className="rounded-xl border border-border bg-card p-6 text-center">
+                <Lightbulb className="size-8 mx-auto mb-3 text-muted-foreground" />
+                <p className="text-sm text-muted-foreground mb-3">
                   No career hypotheses yet. Explore careers and add ones that interest you.
                 </p>
                 <a href="/explore">
-                  <Button variant="outline" size="sm" className="border-zinc-700 text-zinc-300">
+                  <Button variant="outline" size="sm">
                     Explore Careers
                   </Button>
                 </a>
@@ -349,12 +351,14 @@ export default function NavigatePage() {
           {/* Visual Roadmap */}
           <section>
             <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
-              <Map className="size-5 text-emerald-400" />
+              <div className="size-9 rounded-lg bg-success/10 flex items-center justify-center">
+                <Map className="size-4 text-success" />
+              </div>
               Your Career Roadmap
             </h2>
             <div className="relative">
               {/* Vertical line */}
-              <div className="absolute left-[18px] top-0 bottom-0 w-px bg-zinc-800 sm:left-[22px]" />
+              <div className="absolute left-[18px] top-0 bottom-0 w-px bg-border sm:left-[22px]" />
 
               <div className="space-y-6">
                 {ROADMAP_PHASES.map((phase, i) => (
@@ -363,8 +367,8 @@ export default function NavigatePage() {
                     <div
                       className={`relative z-10 flex size-10 sm:size-11 shrink-0 items-center justify-center rounded-full border-2 ${
                         phase.active
-                          ? 'border-indigo-500 bg-indigo-500/20 text-indigo-400'
-                          : 'border-zinc-700 bg-zinc-900 text-zinc-500'
+                          ? 'border-primary bg-primary/10 text-primary'
+                          : 'border-border bg-card text-muted-foreground'
                       }`}
                     >
                       {phase.icon}
@@ -372,12 +376,12 @@ export default function NavigatePage() {
 
                     {/* Content */}
                     <div className={`flex-1 ${i < ROADMAP_PHASES.length - 1 ? 'pb-6' : ''}`}>
-                      <div className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-4 hover:border-zinc-700 transition-colors">
+                      <div className="rounded-xl border border-border bg-card p-5 hover:border-primary/30 transition-colors">
                         <div className="flex items-center justify-between mb-2">
-                          <h3 className="font-semibold text-zinc-200">{phase.title}</h3>
+                          <h3 className="font-semibold text-foreground">{phase.title}</h3>
                           <Badge
                             variant={phase.active ? 'default' : 'secondary'}
-                            className={`text-[10px] ${phase.active ? 'bg-indigo-600' : ''}`}
+                            className={`text-[10px] ${phase.active ? 'bg-primary text-primary-foreground' : ''}`}
                           >
                             {phase.timeline}
                           </Badge>
@@ -385,22 +389,22 @@ export default function NavigatePage() {
 
                         <div className="space-y-3">
                           <div>
-                            <p className="text-xs text-zinc-500 mb-1.5 font-medium">Key Decisions</p>
+                            <p className="text-xs text-muted-foreground mb-1.5 font-medium">Key Decisions</p>
                             <ul className="space-y-1">
                               {phase.decisions.map((d) => (
-                                <li key={d} className="text-sm text-zinc-400 flex items-start gap-2">
-                                  <ChevronRight className="size-3 mt-1 shrink-0 text-zinc-600" />
+                                <li key={d} className="text-sm text-muted-foreground flex items-start gap-2 leading-relaxed">
+                                  <ChevronRight className="size-3 mt-1 shrink-0 text-muted-foreground" />
                                   {d}
                                 </li>
                               ))}
                             </ul>
                           </div>
                           <div>
-                            <p className="text-xs text-zinc-500 mb-1.5 font-medium">Recommended Actions</p>
+                            <p className="text-xs text-muted-foreground mb-1.5 font-medium">Recommended Actions</p>
                             <ul className="space-y-1">
                               {phase.actions.map((a) => (
-                                <li key={a} className="text-sm text-zinc-400 flex items-start gap-2">
-                                  <ChevronRight className="size-3 mt-1 shrink-0 text-indigo-500" />
+                                <li key={a} className="text-sm text-muted-foreground flex items-start gap-2 leading-relaxed">
+                                  <ChevronRight className="size-3 mt-1 shrink-0 text-primary" />
                                   {a}
                                 </li>
                               ))}
@@ -419,7 +423,7 @@ export default function NavigatePage() {
 
       {/* Edit Hypothesis Dialog */}
       <Dialog open={!!editingHypothesis} onOpenChange={(open) => !open && setEditingHypothesis(null)}>
-        <DialogContent className="max-w-md bg-zinc-900 border-zinc-800 text-zinc-100">
+        <DialogContent className="max-w-md bg-card border-border text-foreground">
           {editingHypothesis && (
             <>
               <DialogHeader>
@@ -428,25 +432,25 @@ export default function NavigatePage() {
               </DialogHeader>
               <div className="space-y-4 mt-4">
                 <div>
-                  <label className="text-sm font-medium text-zinc-300 mb-1.5 block">
+                  <label className="text-sm font-medium text-foreground mb-1.5 block">
                     What I liked
                   </label>
                   <Textarea
                     value={editLiked}
                     onChange={(e) => setEditLiked(e.target.value)}
                     placeholder="What excited you about this career?"
-                    className="bg-zinc-800 border-zinc-700 text-zinc-100 placeholder:text-zinc-500 min-h-[80px]"
+                    className="bg-muted border-border text-foreground placeholder:text-muted-foreground min-h-[80px]"
                   />
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-zinc-300 mb-1.5 block">
+                  <label className="text-sm font-medium text-foreground mb-1.5 block">
                     What I didn&apos;t like
                   </label>
                   <Textarea
                     value={editDisliked}
                     onChange={(e) => setEditDisliked(e.target.value)}
                     placeholder="What concerns or doubts do you have?"
-                    className="bg-zinc-800 border-zinc-700 text-zinc-100 placeholder:text-zinc-500 min-h-[80px]"
+                    className="bg-muted border-border text-foreground placeholder:text-muted-foreground min-h-[80px]"
                   />
                 </div>
                 <div className="flex gap-3 justify-end">
@@ -454,14 +458,13 @@ export default function NavigatePage() {
                     variant="outline"
                     size="sm"
                     onClick={() => setEditingHypothesis(null)}
-                    className="border-zinc-700 text-zinc-400"
                   >
                     Cancel
                   </Button>
                   <Button
                     size="sm"
                     onClick={saveNotes}
-                    className="bg-indigo-600 hover:bg-indigo-700 text-white"
+                    className="bg-primary text-primary-foreground hover:bg-primary/90"
                   >
                     <Save className="size-3.5 mr-1.5" />
                     Save Notes
